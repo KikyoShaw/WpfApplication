@@ -1,0 +1,67 @@
+﻿<Window x:Class="videoItem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:videoItem"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="200" Width="400">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="ForegroundStyle" Color="#999999"/>
+
+        <!--<Style x:Key="BaseStyle" TargetType="Label">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Blue"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>-->
+
+
+    </Window.Resources>
+
+    <Button Height="90" Width="337" Cursor="Hand">
+        <Button.Template>
+            <ControlTemplate>
+                <Grid Background="Black">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="153"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border CornerRadius="4" Width="126" Height="70" Margin="10 10 0 10">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/videoItem;Component/Resources/icon_empty.png"/>
+                        </Border.Background>
+                        <Label Content="03:36" FontSize="12" Foreground="White"
+                       VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 0 -2"/>
+                    </Border>
+
+                    <StackPanel Width="173" Grid.Column="1" Margin="0 6 10 0" Orientation="Vertical">
+                        <Label x:Name="tb" FontSize="14" Height="48" Foreground="White">
+                            <TextBlock TextWrapping="Wrap" Text="加强的边惩亚瑟-下赛季T0 的存在金牌讲师" TextTrimming="WordEllipsis"/>
+                        </Label>
+                        <StackPanel Margin="0 2 0 0" Width="173" Orientation="Horizontal">
+                            <Label Height="24" Width="110"
+                       VerticalAlignment="Bottom" HorizontalAlignment="Left" 
+                       Foreground="{StaticResource ForegroundStyle}" FontSize="12">
+                                <TextBlock Text="久爱-预见【吕德凤飞飞" TextTrimming="WordEllipsis"/>
+                            </Label>
+                            <StackPanel Width="58" Orientation="Horizontal">
+                                <Image Source="/videoItem;Component/Resources/Polygon.png" Width="14" Height="10.5"  HorizontalAlignment="Right"/>
+                                <Label  Height="24" HorizontalAlignment="Right" Foreground="{StaticResource ForegroundStyle}" FontSize="12">
+                                    <TextBlock Text="2343万" TextTrimming="WordEllipsis"/>
+                                </Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="tb" Property="Foreground" Value="#FF9600"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Button.Template>
+    </Button>
+</Window>

@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Popup", "WpfApplication\Popup.csproj", "{CFF43A24-AAE1-4F94-81BF-B81387443509}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrollViewer", "ScrollViewer\ScrollViewer.csproj", "{9DA4B290-3076-4C17-BCA1-7595E8CB79F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "videoItem", "videoItem\videoItem.csproj", "{6C7D0C0B-F695-4647-BE75-6E6573745D8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{CFF43A24-AAE1-4F94-81BF-B81387443509}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFF43A24-AAE1-4F94-81BF-B81387443509}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFF43A24-AAE1-4F94-81BF-B81387443509}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DA4B290-3076-4C17-BCA1-7595E8CB79F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DA4B290-3076-4C17-BCA1-7595E8CB79F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DA4B290-3076-4C17-BCA1-7595E8CB79F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DA4B290-3076-4C17-BCA1-7595E8CB79F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C7D0C0B-F695-4647-BE75-6E6573745D8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C7D0C0B-F695-4647-BE75-6E6573745D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C7D0C0B-F695-4647-BE75-6E6573745D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C7D0C0B-F695-4647-BE75-6E6573745D8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
