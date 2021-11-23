@@ -4,45 +4,82 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScrollViewer"
+         xmlns:vt2="clr-namespace:Converter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="750" Width="337">
+        Title="MainWindow" Height="750" Width="340">
 
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/ScrollViewer;Component/Style/ScrollViewerStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="ForegroundStyle" Color="#999999"/>
+            <SolidColorBrush x:Key="OpacityBrush" Color="#FFFFFF" Opacity="0.08"/>
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid Background="Red">
-        <Grid Margin="0 44 0 0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="44" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+    <Grid Background="#272A2F">
+        <Grid>
             <Label Content="推荐视频" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="16 8 0 0" FontSize="14" Foreground="White"/>
-            <ScrollViewer x:Name="RecommendVideoScrollViewer" Grid.Row="1" Style="{StaticResource ScrollViewerStyle}">
-                <!--推荐列表数据界面-->
-                <ItemsControl ItemsSource="{Binding vRecommendVideos}" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button>
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <TextBlock Padding="10,0,0,0" Text="刷新看看" Cursor="Hand" FontSize="12" Foreground="#FF25A3E5"/>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+            <Grid x:Name="RecommendPanel" HorizontalAlignment="Left" VerticalAlignment="top" Grid.Row="1" Margin="0 36 0 0">
+                <ScrollViewer x:Name="RecommendVideoScrollViewer" Margin="-1" HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto" Style="{StaticResource ScrollViewerStyle}">
+                    <!--推荐列表数据界面-->
+                    <ItemsControl ItemsSource="{Binding vRecommendVideos}" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Height="90" Width="337" Cursor="Hand" 
+                                    Command="{Binding DataContext.PlayRecommendVideoCommand,ElementName=RecommendPanel}" CommandParameter="{Binding}">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Grid x:Name="RecommendGrid">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Border HorizontalAlignment="Left" CornerRadius="4" Width="126" Height="70" Margin="16 10 0 10">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="/ScrollViewer;Component/Resources/icon_empty.png"/>
+                                                    </Border.Background>
+                                                </Border>
+                                                <TextBlock Text="{Binding sVideoDuration}" FontSize="12" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 14 12"/>
+                                                <StackPanel Grid.Column="1" Width="167" Orientation="Vertical" Margin="0 12 16 0">
+                                                    <TextBlock  x:Name="videoNameText" FontSize="14" Height="48" Foreground="White"
+                                                                TextWrapping="Wrap" Text="{Binding sVideoName}" TextTrimming="CharacterEllipsis"/>
+                                                    <Grid Margin="0 2 10 0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock HorizontalAlignment="Left" Margin="0 0 8 0"
+                                                               Foreground="{StaticResource ForegroundStyle}" FontSize="12" Text="{Binding sNickname}" TextTrimming="CharacterEllipsis"/>
+                                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                            <Image Source="/ScrollViewer;component/Resources/Polygon.png" Width="14" Height="10.5"/>
+                                                            <TextBlock Foreground="{StaticResource ForegroundStyle}" FontSize="12"
+                                                                       Text="{Binding lPlayCount,Converter={x:Static vt2:LongCountToShortText.Instance}}" TextTrimming="CharacterEllipsis"/>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </StackPanel>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="videoNameText" Property="Foreground" Value="#FF9600"/>
+                                                    <Setter TargetName="RecommendGrid" Property="Background" Value="{StaticResource OpacityBrush}"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

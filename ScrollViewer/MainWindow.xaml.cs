@@ -27,14 +27,23 @@ namespace ScrollViewer
 			InitializeComponent();
 			this.DataContext = PlayerVM.Instance;
 
-
-			ObservableCollection<MainViewModel> vRecommendVideos = new ObservableCollection<MainViewModel>();
-			for (int i = 0; i < 30; i++)
-			{
-				vRecommendVideos.Add(new MainViewModel());
-			}
-
+			PlayerVM.Instance.init();
 
 		}
+
+		//private void OnScrollChanged(object sender, ScrollChangedEventArgs e)
+		//{
+		//	try
+		//	{
+		//		if (sender is ScrollViewer sv)
+		//		{
+		//			if (sv.VerticalOffset != 0 && sv.ScrollableHeight != 0 && sv.VerticalOffset == sv.ScrollableHeight)
+		//			{
+		//				PlayerVM.Instance.IncreaseList();
+		//			}
+		//		}
+		//	}
+		//	catch { }
+		//}
 	}
 }
