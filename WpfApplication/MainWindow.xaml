@@ -11,7 +11,23 @@
     </Window.Resources>
 
     <Grid Background="	#F0F8FF" Margin="20">
-        <Button x:Name="testBtn" Content="测试" Width="200" Height="60" VerticalAlignment="Top" Click="Btn_Click"/>
+        <!--Toast使用示例-->
+        <Button x:Name="toastBtn" Content="toast" Width="200" Height="60" VerticalAlignment="Top" HorizontalAlignment="Right" Click="toastBtn_Click"/>
+        <Border CornerRadius="6" Background="#000000" HorizontalAlignment="Center" VerticalAlignment="Center"
+                Margin="0, 100, 0, 0" Height="52" Width="144">
+            <Grid Margin="20,0,20,0" MinWidth="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Source="/Popup;Component/Resources/reporticon.png" Height="16" Width="16"/>
+                <TextBlock Grid.Column="1" Margin="8,0,0,0" Text="{Binding sToastContent}" 
+                           Foreground="#FFFFFF" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+
+        <!--popup使用示例-->
+        <Button x:Name="testBtn" Content="popup" Width="200" Height="60" VerticalAlignment="Top" Click="Btn_Click"/>
 
         <Popup x:Name="testPopup" IsOpen="False" Focusable="False" StaysOpen="False" AllowsTransparency="True" Placement="Bottom"
                PlacementTarget="{Binding ElementName=testBtn}" HorizontalOffset="20" VerticalOffset="0">

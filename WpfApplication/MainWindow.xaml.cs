@@ -29,5 +29,10 @@ namespace WpfApplication
 		{
 			testPopup.IsOpen = true;
 		}
+
+		private void toastBtn_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }
