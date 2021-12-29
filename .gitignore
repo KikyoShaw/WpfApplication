@@ -4,4 +4,6 @@
 /ScrollViewer/obj
 /videoItem/bin
 /videoItem/obj
-/.vs/WpfApplication
+/LoadDemo/obj
+/.vs
+/LoadDemo/bin

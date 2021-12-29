@@ -1,0 +1,163 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--滚动两边按钮样式-->
+    <Style x:Key="ScrollBarTrackButton" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="MinHeight" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Rectangle Fill="Transparent" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--滚动条滑块样式-->
+    <ControlTemplate x:Key="ThumbTemplate" TargetType="{x:Type Thumb}">
+        <Border CornerRadius="4" Margin="3,0,3,0" SnapsToDevicePixels="True" Background="#26FFFFFF" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"/>
+    </ControlTemplate>
+
+    <!--垂直滚动条模板-->
+    <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
+        <Grid x:Name="VerticalRoot" Height="{TemplateBinding Height}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <!--中间滑动区域-->
+            <Track x:Name="PART_Track" IsDirectionReversed="True" Grid.Row="1">
+                <!--上滑块-->
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton x:Name="HorizontalLargeDecrease" Command="ScrollBar.PageUpCommand" 
+                                          Style="{DynamicResource ScrollBarTrackButton}" />
+                </Track.DecreaseRepeatButton>
+                <!--中间滑块-->
+                <Track.Thumb>
+                    <Thumb Template="{StaticResource ThumbTemplate}"/>
+                </Track.Thumb>
+                <!--下滑块-->
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton x:Name="HorizontalLargeIncrease" Command="ScrollBar.PageDownCommand"
+                                          Style="{DynamicResource ScrollBarTrackButton}" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+        </Grid>
+    </ControlTemplate>
+
+    <!--水平滚动条模板-->
+    <ControlTemplate x:Key="HorizontalScrollBar" TargetType="{x:Type ScrollBar}">
+        <Grid x:Name="HorizontalRoot" Height="{TemplateBinding Height}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <!--中间滑动区域-->
+            <Track x:Name="PART_Track" IsDirectionReversed="True" Grid.Column="1">
+                <!--左滑块-->
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton x:Name="HorizontalLargeDecrease" Command="ScrollBar.PageLeftCommand" 
+                                          Style="{DynamicResource ScrollBarTrackButton}" />
+                </Track.DecreaseRepeatButton>
+                <!--中间滑块-->
+                <Track.Thumb>
+                    <Thumb Template="{StaticResource ThumbTemplate}"/>
+                </Track.Thumb>
+                <!--下滑块-->
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton x:Name="HorizontalLargeIncrease" Command="ScrollBar.PageRightCommand"
+                                          Style="{DynamicResource ScrollBarTrackButton}" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+        </Grid>
+    </ControlTemplate>
+
+
+    <!--ScrollBar样式-->
+    <Style x:Key="DefaultScrollBar" TargetType="{x:Type ScrollBar}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Template" Value="{StaticResource VerticalScrollBar}" />
+                <Setter Property="Width" Value="14" />
+            </Trigger>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Template" Value="{StaticResource HorizontalScrollBar}" />
+                <Setter Property="Height" Value="0" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--ScrollViewer样式-->
+    <Style  TargetType="{x:Type ScrollViewer}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" x:Name="leftColumn" />
+                            <ColumnDefinition Width="Auto" x:Name="rightColumn" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}"
+                                                CanHorizontallyScroll="False" CanVerticallyScroll="False" ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}"
+                                                Grid.Row="0" Grid.Column="0"/>
+                        <!--垂直滚动条 -->
+                        <ScrollBar x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar"
+                                   ViewportSize="{TemplateBinding ViewportHeight}"
+                                   Cursor="Arrow" Grid.Column="1" Maximum="{TemplateBinding ScrollableHeight}"
+                                   Minimum="0" Grid.Row="0" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                   Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                   Orientation="Vertical" Style="{StaticResource DefaultScrollBar}"/>
+                        <!--水平滚动条 -->
+                        <ScrollBar x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar"
+                                   ViewportSize="{TemplateBinding ViewportWidth}"
+                                   Cursor="Arrow" Grid.Column="0" Maximum="{TemplateBinding ScrollableWidth}"
+                                   Minimum="0" Grid.Row="1" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                                   Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                   Orientation="Horizontal" Style="{StaticResource DefaultScrollBar}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--ListView样式-->
+    <Style x:Key="ListViewerStyle" TargetType="{x:Type ListBox}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Grid>
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                        <ScrollViewer Margin="1" Focusable="false" Background="{TemplateBinding Background}">
+                            <StackPanel Margin="2" IsItemsHost="true"/>
+                        </ScrollViewer>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsGrouping" Value="true">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>
