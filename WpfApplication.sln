@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrollViewer", "ScrollViewe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "videoItem", "videoItem\videoItem.csproj", "{6C7D0C0B-F695-4647-BE75-6E6573745D8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadDemo", "LoadDemo\LoadDemo.csproj", "{C3FBD3B5-C3EE-4B44-BD92-6583F8674D62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoadDemo", "LoadDemo\LoadDemo.csproj", "{C3FBD3B5-C3EE-4B44-BD92-6583F8674D62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{295862BE-2298-46B7-96D0-B4F78D4F7923}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C3FBD3B5-C3EE-4B44-BD92-6583F8674D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3FBD3B5-C3EE-4B44-BD92-6583F8674D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3FBD3B5-C3EE-4B44-BD92-6583F8674D62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{295862BE-2298-46B7-96D0-B4F78D4F7923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{295862BE-2298-46B7-96D0-B4F78D4F7923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{295862BE-2298-46B7-96D0-B4F78D4F7923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{295862BE-2298-46B7-96D0-B4F78D4F7923}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

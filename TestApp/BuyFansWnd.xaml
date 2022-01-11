@@ -1,0 +1,196 @@
+﻿<UserControl x:Class="TestApp.BuyFansWnd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+         <ResourceDictionary>
+            <BitmapImage x:Key="Res_IconBg" UriSource="/TestApp;Component/Resources/bg.png"/>
+            <BitmapImage x:Key="Res_IconRule" UriSource="/TestApp;Component/Resources/rule.png"/>
+            <BitmapImage x:Key="Res_IconCountDown" UriSource="/TestApp;Component/Resources/CountDown.png"/>
+             <!--头像圆角化处理-->
+            <GeometryGroup x:Key="clipGeometry" FillRule="Nonzero">
+                <EllipseGeometry RadiusX="32" RadiusY="32" Center="32,32"/>
+            </GeometryGroup>
+            <LinearGradientBrush x:Key="BtnBackground" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#FF9371" Offset="0.0"/>
+                <GradientStop Color="#FF7F57" Offset="0.46"/>
+                <GradientStop Color="#FF5E5E" Offset="0.92"/>
+            </LinearGradientBrush>
+             <!--粉丝团特权项-->
+            <Style x:Key="FansPriItemStyle" TargetType="Button">
+                <Setter Property="Width" Value="75"/>
+                <Setter Property="Height" Value="88"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid Background="Gray">
+                                <Border Width="52" Height="52" CornerRadius="26" Background="#F4F4F4" 
+                                        VerticalAlignment="Bottom" Margin="0 0 0 28">
+                                  
+                                </Border>
+                                <TextBlock Text="{TemplateBinding Content}" TextAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="#404040" 
+                                           Height="14" VerticalAlignment="Bottom" Margin="0 0 0 8"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid Background="Gray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="168"/>
+            <RowDefinition/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <Image Source="{Binding bAnimation}" Width="300" Height="126" VerticalAlignment="Center"/>
+        <StackPanel Margin="10 17 10 0" Orientation="Vertical">
+            <!--主播的粉丝团+人气-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="张大仙的粉丝团" FontWeight="Bold" FontSize="14"/>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <TextBlock Text="+23.4w人气" FontWeight="Bold" FontSize="14"/>
+                    <Image Width="7" Height="8"/>
+                </StackPanel>
+            </Grid>
+            <!--主播的粉丝数据-->
+            <Grid Margin="0 10 0 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="23.4w" FontWeight="Bold" FontSize="12"/>
+                    <TextBlock Text=" 名成员" FontSize="12" Foreground="#B24F4F4F"/>
+                    <TextBlock Text=" | " Height="13" Margin="0 0 0 2" Foreground="#29000000"/>
+                    <TextBlock Text="565" FontWeight="Bold" FontSize="12"/>
+                    <TextBlock Text=" 超粉" FontSize="12" Foreground="#B24F4F4F"/>
+                    <TextBlock Text=" | " Height="13" Margin="0 0 0 2" Foreground="#29000000"/>
+                    <TextBlock Text="54" FontWeight="Bold" FontSize="12"/>
+                    <TextBlock Text=" 守护" FontSize="12" Foreground="#B24F4F4F"/>
+                </StackPanel>
+                <Button Grid.Column="2" Content="粉丝团任务" Foreground="#505050"/>
+            </Grid>
+            <!--主播头像和用户头像-->
+            <Grid Margin="0 25 0 0">
+                <Image Margin="-52 0 0 0" Width="64" Height="64" Source="/TestApp;Component/Resources/th-c4.png"
+                       Stretch="Uniform" Clip="{StaticResource clipGeometry}"/>
+                <Image Margin="52 0 0 0" Width="64" Height="64" Source="/TestApp;Component/Resources/th-c6.png" 
+                       Stretch="Uniform" Clip="{StaticResource clipGeometry}"/>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="0 10 0 0" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="成为粉丝入团，享粉丝特权，与主播更亲密" FontWeight="Bold" FontSize="14"
+                           Visibility="Collapsed"/>
+                <StackPanel Orientation="Horizontal" Visibility="Visible">
+                    <TextBlock Text="今日入团" FontSize="14" Foreground="#9B4A4E"/>
+                    <Grid Margin="4 0 0 0" Width="121" Height="20">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="{StaticResource Res_IconCountDown}"/>
+                        </Grid.Background>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="限时1折" FontFamily="HYYakuHei" FontSize="15" Foreground="White" FontWeight="Black" FontStyle="Oblique"/>
+                            <TextBlock Margin="5 0 0 0" Text="02:00:23" FontSize="13" Foreground="White"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+                <Button Margin="5 0 0 0" Height="12" Width="12"/>
+            </StackPanel>
+            <TextBlock Text="- 粉丝尊享以下特权-" FontSize="12" Foreground="#B24F4F4F"
+                       Margin="0 8 0 0" HorizontalAlignment="Center"/>
+            <WrapPanel Margin="0 8 0 0" HorizontalAlignment="Center">
+                <Button Style="{StaticResource FansPriItemStyle}" ToolTip="发言时展示，为主播代言" Content="绝美徽章"/>
+                <Button Margin="5 0 0 0" Style="{StaticResource FansPriItemStyle}" ToolTip="级徽章即可使用" Content="炫彩弹幕"/>
+                <Button Margin="5 0 0 0" Style="{StaticResource FansPriItemStyle}" ToolTip="每日打卡，热梗任意发" Content="梗使用权"/>
+                <Button Margin="5 0 0 0" Style="{StaticResource FansPriItemStyle}" ToolTip="众多福利，等你来拿" Content="粉丝上电视"/>
+                <Button Margin="0 5 0 0" Style="{StaticResource FansPriItemStyle}" ToolTip="登贵宾席，身份尊贵" Content="贵宾坐席"/>
+                <Button Margin="5 5 0 0" Style="{StaticResource FansPriItemStyle}" ToolTip="虎粮礼包，上线即领" Content="每日礼包"/>
+                <Button Margin="5 5 0 0" Style="{StaticResource FansPriItemStyle}" ToolTip="登粉丝榜，无比荣耀" Content="真爱排行"/>
+                <Button Margin="5 5 0 0" Style="{StaticResource FansPriItemStyle}" ToolTip="主播加钻，享粉丝弹幕" Content="粉丝加钻"/>
+            </WrapPanel>
+        </StackPanel>
+        <!--不打折开通样式-->
+        <StackPanel Grid.Row="2" Margin="0 0 0 6" Orientation="Vertical" VerticalAlignment="Center" 
+                    Visibility="Collapsed">
+            <Button Width="298" Height="51" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{StaticResource BtnBackground}" CornerRadius="25">
+                            <StackPanel Margin="0 5 0 0" Orientation="Vertical">
+                                <TextBlock Text="加入粉丝团" FontSize="15" Foreground="White" HorizontalAlignment="Center"/>
+                                <StackPanel Margin="0 2 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Text="送" FontSize="11" Foreground="White"/>
+                                    <Image Width="17" Height="17"/>
+                                    <TextBlock Text="x1 (100金豆)" FontSize="11" Foreground="White"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+        <!--打折开通样式-->
+        <StackPanel Grid.Row="2" Margin="14 0 14 0" VerticalAlignment="Center"
+                    Visibility="Visible">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="送" FontSize="12" Foreground="Black"/>
+                    <Image Width="27" Margin="4 -5 4 0" Height="27" Source="/TestApp;Component/Resources/th-c4.png"/>
+                    <TextBlock Text="x1" FontSize="12" Foreground="Black"/>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Margin="4 -4 4 0" Width="21" Height="21" Source="/TestApp;Component/Resources/th-c6.png"/>
+                            <TextBlock Text="x1" FontSize="12" Foreground="#999999"/>
+                        </StackPanel>
+                        <TextBlock Margin="1 1 0 0" Width="42" Text="一一一一" Foreground="#999999"/>
+                    </Grid>
+                </StackPanel>
+                <Grid Grid.Column="1" Margin="20 0 0 0">
+                    <StackPanel Orientation="Vertical">
+                        <Button Height="48" Cursor="Hand">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{StaticResource BtnBackground}" CornerRadius="24">
+                                        <StackPanel Margin="0 6 0 0" Orientation="Vertical">
+                                            <TextBlock Text="加入粉丝团" FontSize="16" Foreground="White" HorizontalAlignment="Center"/>
+                                            <StackPanel Margin="0 3 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Text="折后" FontSize="10" Foreground="White"/>
+                                                <Image Width="10" Height="10"/>
+                                                <TextBlock Text="100" FontSize="10" Foreground="White"/>
+                                                <TextBlock Margin="2 0 0 0" Text="1000" FontSize="10" Foreground="#7FFFFFFF"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                    <Grid Margin="0 -12 0 0" Width="59" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="{StaticResource Res_IconBg}"/>
+                        </Grid.Background>
+                        <TextBlock Text="限时1折" FontFamily="HYYakuHei" FontSize="10" Foreground="#D95308" FontWeight="Black" FontStyle="Oblique"
+                                   VerticalAlignment="Center" TextAlignment="Center"/>
+                    </Grid>
+                </Grid>
+            </Grid> 
+        </StackPanel>    
+    </Grid>
+</UserControl>

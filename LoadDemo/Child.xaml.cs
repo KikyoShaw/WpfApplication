@@ -29,6 +29,9 @@ namespace LoadDemo
 
 		private void Child_Loaded(object sender, RoutedEventArgs e)
 		{
+
+			
+
 			var talkList_result = talkList.IsVisible;
 			var talkList_index = System.Windows.Media.VisualTreeHelper.GetChildrenCount(talkList);
 			var index2 = System.Windows.LogicalTreeHelper.GetChildren(talkList);

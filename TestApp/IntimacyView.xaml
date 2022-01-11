@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="TestApp.IntimacyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <BitmapImage x:Key="Res_IntimacyGift" UriSource="/TestApp;Component/Resources/IntimacyGift.png"/>
+        <BitmapImage x:Key="Res_IntimacyTask" UriSource="/TestApp;Component/Resources/IntimacyTask.png"/>
+        <BitmapImage x:Key="Res_IntimacyPlay" UriSource="/TestApp;Component/Resources/IntimacyPlay.png"/>
+        <BitmapImage x:Key="Res_IntimacyUp" UriSource="/TestApp;Component/Resources/IntimacyUp.png"/>
+        <BitmapImage x:Key="Res_IntimacyClose" UriSource="/TestApp;Component/Resources/IntimacyClose.png"/>
+    </UserControl.Resources>
+    
+    <Grid Width="280" Height="338">
+        <Border CornerRadius="8" Background="#4B4C53">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="10" Opacity="0.2" Color="#000000"/>
+            </Border.Effect>
+            <StackPanel>
+                <Button Margin="0 -8 -8 0" Width="20" Height="20" HorizontalAlignment="Right"
+                        Cursor="Hand" Click="CloseBtn_Click">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="{StaticResource Res_IntimacyClose}"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <StackPanel Margin="15 16 15 0">
+                    <TextBlock Text="如何获得亲密度" FontSize="14" Foreground="White" FontWeight="Black"/>
+                    <StackPanel Orientation="Horizontal" Margin="0 18 0 0">
+                        <Image Source="{StaticResource Res_IntimacyGift}" Width="40" Height="40"/>
+                        <StackPanel Margin="10 0 0 0">
+                            <TextBlock Text="送礼物" FontSize="12" Foreground="White" FontWeight="Black"/>
+                            <TextBlock Text="送价值100金豆礼物，会增加1亲密度" FontSize="12" Foreground="White" Margin="0 6 0 0"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 15 0 0">
+                        <Image Source="{StaticResource Res_IntimacyTask}" Width="40" Height="40"/>
+                        <StackPanel Margin="10 0 0 0">
+                            <TextBlock Text="完成粉丝团任务" FontSize="12" Foreground="White" FontWeight="Black"/>
+                            <TextBlock Text="完成粉丝团任务，获取额外亲密度" FontSize="12" Foreground="White" Margin="0 6 0 0"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 15 0 0">
+                        <Image Source="{StaticResource Res_IntimacyPlay}" Width="40" Height="40"/>
+                        <StackPanel Margin="10 0 0 0">
+                            <TextBlock Text="参与直播间玩法" FontSize="12" Foreground="White" FontWeight="Black"/>
+                            <TextBlock Text="如上电视、梗等" FontSize="12" Foreground="White" Margin="0 6 0 0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="15 20 15 0">
+                    <TextBlock Text="亲密度上限" FontSize="14" Foreground="White" FontWeight="Black"/>
+                    <StackPanel Orientation="Horizontal" Margin="0 18 0 0">
+                        <Image Source="{StaticResource Res_IntimacyUp}" Width="40" Height="40"/>
+                        <StackPanel Margin="10 0 0 0">
+                            <TextBlock Text="今日亲密度上限1000" FontSize="12" Foreground="White" FontWeight="Black"/>
+                            <TextBlock Text="每日可增加的亲密度都有上限，等级越高，上限越高。" Width="200" TextWrapping="Wrap" FontSize="12" Foreground="White" Margin="0 6 0 0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

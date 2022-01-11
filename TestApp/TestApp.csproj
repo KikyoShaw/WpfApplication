@@ -1,0 +1,194 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\bg.png" />
+    <None Remove="Resources\CountDown.png" />
+    <None Remove="Resources\FansBg.png" />
+    <None Remove="Resources\fansInfoBg.png" />
+    <None Remove="Resources\hot_hover\1.png" />
+    <None Remove="Resources\hot_hover\10.png" />
+    <None Remove="Resources\hot_hover\11.png" />
+    <None Remove="Resources\hot_hover\12.png" />
+    <None Remove="Resources\hot_hover\13.png" />
+    <None Remove="Resources\hot_hover\14.png" />
+    <None Remove="Resources\hot_hover\15.png" />
+    <None Remove="Resources\hot_hover\16.png" />
+    <None Remove="Resources\hot_hover\17.png" />
+    <None Remove="Resources\hot_hover\18.png" />
+    <None Remove="Resources\hot_hover\19.png" />
+    <None Remove="Resources\hot_hover\2.png" />
+    <None Remove="Resources\hot_hover\20.png" />
+    <None Remove="Resources\hot_hover\21.png" />
+    <None Remove="Resources\hot_hover\22.png" />
+    <None Remove="Resources\hot_hover\23.png" />
+    <None Remove="Resources\hot_hover\24.png" />
+    <None Remove="Resources\hot_hover\25.png" />
+    <None Remove="Resources\hot_hover\26.png" />
+    <None Remove="Resources\hot_hover\27.png" />
+    <None Remove="Resources\hot_hover\28.png" />
+    <None Remove="Resources\hot_hover\29.png" />
+    <None Remove="Resources\hot_hover\3.png" />
+    <None Remove="Resources\hot_hover\30.png" />
+    <None Remove="Resources\hot_hover\31.png" />
+    <None Remove="Resources\hot_hover\32.png" />
+    <None Remove="Resources\hot_hover\33.png" />
+    <None Remove="Resources\hot_hover\34.png" />
+    <None Remove="Resources\hot_hover\35.png" />
+    <None Remove="Resources\hot_hover\36.png" />
+    <None Remove="Resources\hot_hover\37.png" />
+    <None Remove="Resources\hot_hover\38.png" />
+    <None Remove="Resources\hot_hover\39.png" />
+    <None Remove="Resources\hot_hover\4.png" />
+    <None Remove="Resources\hot_hover\40.png" />
+    <None Remove="Resources\hot_hover\41.png" />
+    <None Remove="Resources\hot_hover\42.png" />
+    <None Remove="Resources\hot_hover\43.png" />
+    <None Remove="Resources\hot_hover\44.png" />
+    <None Remove="Resources\hot_hover\45.png" />
+    <None Remove="Resources\hot_hover\46.png" />
+    <None Remove="Resources\hot_hover\47.png" />
+    <None Remove="Resources\hot_hover\48.png" />
+    <None Remove="Resources\hot_hover\49.png" />
+    <None Remove="Resources\hot_hover\5.png" />
+    <None Remove="Resources\hot_hover\50.png" />
+    <None Remove="Resources\hot_hover\51.png" />
+    <None Remove="Resources\hot_hover\52.png" />
+    <None Remove="Resources\hot_hover\53.png" />
+    <None Remove="Resources\hot_hover\54.png" />
+    <None Remove="Resources\hot_hover\55.png" />
+    <None Remove="Resources\hot_hover\56.png" />
+    <None Remove="Resources\hot_hover\57.png" />
+    <None Remove="Resources\hot_hover\58.png" />
+    <None Remove="Resources\hot_hover\59.png" />
+    <None Remove="Resources\hot_hover\6.png" />
+    <None Remove="Resources\hot_hover\60.png" />
+    <None Remove="Resources\hot_hover\61.png" />
+    <None Remove="Resources\hot_hover\62.png" />
+    <None Remove="Resources\hot_hover\63.png" />
+    <None Remove="Resources\hot_hover\64.png" />
+    <None Remove="Resources\hot_hover\65.png" />
+    <None Remove="Resources\hot_hover\66.png" />
+    <None Remove="Resources\hot_hover\67.png" />
+    <None Remove="Resources\hot_hover\68.png" />
+    <None Remove="Resources\hot_hover\69.png" />
+    <None Remove="Resources\hot_hover\7.png" />
+    <None Remove="Resources\hot_hover\70.png" />
+    <None Remove="Resources\hot_hover\71.png" />
+    <None Remove="Resources\hot_hover\72.png" />
+    <None Remove="Resources\hot_hover\8.png" />
+    <None Remove="Resources\hot_hover\9.png" />
+    <None Remove="Resources\IntimacyClose.png" />
+    <None Remove="Resources\IntimacyGift.png" />
+    <None Remove="Resources\IntimacyPlay.png" />
+    <None Remove="Resources\IntimacyTask.png" />
+    <None Remove="Resources\IntimacyUp.png" />
+    <None Remove="Resources\loveIcon.png" />
+    <None Remove="Resources\rule.png" />
+    <None Remove="Resources\th-c4.png" />
+    <None Remove="Resources\th-c6.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmLight" Version="5.4.1.1" />
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\fansInfoBg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\bg.png" />
+    <Resource Include="Resources\CountDown.png" />
+    <Resource Include="Resources\FansBg.png" />
+    <Resource Include="Resources\hot_hover\1.png" />
+    <Resource Include="Resources\hot_hover\10.png" />
+    <Resource Include="Resources\hot_hover\11.png" />
+    <Resource Include="Resources\hot_hover\12.png" />
+    <Resource Include="Resources\hot_hover\13.png" />
+    <Resource Include="Resources\hot_hover\14.png" />
+    <Resource Include="Resources\hot_hover\15.png" />
+    <Resource Include="Resources\hot_hover\16.png" />
+    <Resource Include="Resources\hot_hover\17.png" />
+    <Resource Include="Resources\hot_hover\18.png" />
+    <Resource Include="Resources\hot_hover\19.png" />
+    <Resource Include="Resources\hot_hover\2.png" />
+    <Resource Include="Resources\hot_hover\20.png" />
+    <Resource Include="Resources\hot_hover\21.png" />
+    <Resource Include="Resources\hot_hover\22.png" />
+    <Resource Include="Resources\hot_hover\23.png" />
+    <Resource Include="Resources\hot_hover\24.png" />
+    <Resource Include="Resources\hot_hover\25.png" />
+    <Resource Include="Resources\hot_hover\26.png" />
+    <Resource Include="Resources\hot_hover\27.png" />
+    <Resource Include="Resources\hot_hover\28.png" />
+    <Resource Include="Resources\hot_hover\29.png" />
+    <Resource Include="Resources\hot_hover\3.png" />
+    <Resource Include="Resources\hot_hover\30.png" />
+    <Resource Include="Resources\hot_hover\31.png" />
+    <Resource Include="Resources\hot_hover\32.png" />
+    <Resource Include="Resources\hot_hover\33.png" />
+    <Resource Include="Resources\hot_hover\34.png" />
+    <Resource Include="Resources\hot_hover\35.png" />
+    <Resource Include="Resources\hot_hover\36.png" />
+    <Resource Include="Resources\hot_hover\37.png" />
+    <Resource Include="Resources\hot_hover\38.png" />
+    <Resource Include="Resources\hot_hover\39.png" />
+    <Resource Include="Resources\hot_hover\4.png" />
+    <Resource Include="Resources\hot_hover\40.png" />
+    <Resource Include="Resources\hot_hover\41.png" />
+    <Resource Include="Resources\hot_hover\42.png" />
+    <Resource Include="Resources\hot_hover\43.png" />
+    <Resource Include="Resources\hot_hover\44.png" />
+    <Resource Include="Resources\hot_hover\45.png" />
+    <Resource Include="Resources\hot_hover\46.png" />
+    <Resource Include="Resources\hot_hover\47.png" />
+    <Resource Include="Resources\hot_hover\48.png" />
+    <Resource Include="Resources\hot_hover\49.png" />
+    <Resource Include="Resources\hot_hover\5.png" />
+    <Resource Include="Resources\hot_hover\50.png" />
+    <Resource Include="Resources\hot_hover\51.png" />
+    <Resource Include="Resources\hot_hover\52.png" />
+    <Resource Include="Resources\hot_hover\53.png" />
+    <Resource Include="Resources\hot_hover\54.png" />
+    <Resource Include="Resources\hot_hover\55.png" />
+    <Resource Include="Resources\hot_hover\56.png" />
+    <Resource Include="Resources\hot_hover\57.png" />
+    <Resource Include="Resources\hot_hover\58.png" />
+    <Resource Include="Resources\hot_hover\59.png" />
+    <Resource Include="Resources\hot_hover\6.png" />
+    <Resource Include="Resources\hot_hover\60.png" />
+    <Resource Include="Resources\hot_hover\61.png" />
+    <Resource Include="Resources\hot_hover\62.png" />
+    <Resource Include="Resources\hot_hover\63.png" />
+    <Resource Include="Resources\hot_hover\64.png" />
+    <Resource Include="Resources\hot_hover\65.png" />
+    <Resource Include="Resources\hot_hover\66.png" />
+    <Resource Include="Resources\hot_hover\67.png" />
+    <Resource Include="Resources\hot_hover\68.png" />
+    <Resource Include="Resources\hot_hover\69.png" />
+    <Resource Include="Resources\hot_hover\7.png" />
+    <Resource Include="Resources\hot_hover\70.png" />
+    <Resource Include="Resources\hot_hover\71.png" />
+    <Resource Include="Resources\hot_hover\72.png" />
+    <Resource Include="Resources\hot_hover\8.png" />
+    <Resource Include="Resources\hot_hover\9.png" />
+    <Resource Include="Resources\IntimacyClose.png" />
+    <Resource Include="Resources\IntimacyGift.png" />
+    <Resource Include="Resources\IntimacyPlay.png" />
+    <Resource Include="Resources\IntimacyTask.png" />
+    <Resource Include="Resources\IntimacyUp.png" />
+    <Resource Include="Resources\loveIcon.png" />
+    <Resource Include="Resources\rule.png" />
+    <Resource Include="Resources\th-c4.png" />
+    <Resource Include="Resources\th-c6.png" />
+  </ItemGroup>
+
+</Project>
