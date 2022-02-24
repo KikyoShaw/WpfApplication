@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TestApp
+namespace ToolTip
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -23,12 +23,6 @@ namespace TestApp
 		public MainWindow()
 		{
 			InitializeComponent();
-
-			List<string> list = new List<string>();
-			list.Add("111");
-			if(!list.Contains("111"))
-				list.Add("111");
-			list.Add("111");
 		}
 	}
 }

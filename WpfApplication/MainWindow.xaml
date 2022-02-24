@@ -26,6 +26,22 @@
             </Grid>
         </Border>
 
+        <TextBlock x:Name="textTips"/>
+
+        <WrapPanel Height="100" Width="200" HorizontalAlignment="Left" Background="Gray" Orientation="Horizontal">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Width="24" Height="24"/>
+                <TextBlock Grid.Column="1" FontSize="14" TextWrapping="Wrap">
+                    <Run Foreground="White" Text="你知道吗吗吗吗吗吗吗"/>
+                    <Run Foreground="White" Text="你知道吗"/>
+                </TextBlock>
+            </Grid>
+        </WrapPanel>
+
         <!--popup使用示例-->
         <Button x:Name="testBtn" Content="popup" Width="200" Height="60" VerticalAlignment="Top" Click="Btn_Click"/>
 
