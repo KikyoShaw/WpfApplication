@@ -42,7 +42,7 @@ namespace dropAnimation
 
 		BitmapImage bmp = null;
 
-		Rect tRect = new Rect(0, 0, 0, 0);
+		//Rect tRect = new Rect(0, 0, 0, 0);
 
 		private bool _start = false;
 
@@ -52,14 +52,14 @@ namespace dropAnimation
 
 		public drop()
 		{
-			CompositionTarget.Rendering += CompositionTarget_Rendering;
+			//CompositionTarget.Rendering += CompositionTarget_Rendering;
 			//dispatcherTimer.Interval = TimeSpan.FromMilliseconds(iRefreshTime); 
 			//dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
 		}
 
 		public void initRect()
 		{
-			tRect = new Rect(0, 0, ActualWidth, ActualHeight + 26 * 2);
+			//tRect = new Rect(0, -26, ActualWidth, ActualHeight + 26*2);
 		}
 
 		//根据屏幕尺寸初始化元素个数
@@ -77,6 +77,9 @@ namespace dropAnimation
 				//	return;
 				//}
 
+				Stop();
+				vDropItem.Clear();
+
 				int count = (int)ActualWidth / iPassageSpace;
 				int temp = 0;
 				for(int i = 0; i < count; i++)
@@ -85,15 +88,16 @@ namespace dropAnimation
 					{
 						var item = new DropItem();
 						item.iPosX = rItemRnd.Next((int)ActualWidth);//i * iPassageSpace;
-						item.iPosY = -(rItemRnd.Next(500));
-						item.iSpeed = 2+rItemRnd.Next(10)/10.0;
+						item.iPosY = -rItemRnd.Next(500);
+						item.iSpeed = 2 + rItemRnd.Next(10)/10.0;
 						if(!vDropItem.ContainsKey(temp))
 							vDropItem.Add(temp, item);
 						temp++;
 					}
 				}
 
-				dispatcherTimer.Start();
+				Start();
+				//dispatcherTimer.Start();
 			}
 			catch { }
 		}
@@ -121,7 +125,8 @@ namespace dropAnimation
 			{
 				if (vDropItem.Count <= 0)
 				{
-					dispatcherTimer.Stop();
+					//dispatcherTimer.Stop();
+					Stop();
 					return;
 				}
 				//遍历
@@ -167,10 +172,14 @@ namespace dropAnimation
 			{
 				base.OnRender(dc);
 
+				if (bmp == null)
+					return;
+
 				foreach (var key in vDropItem.Keys)
 				{
 					var item = vDropItem[key];
-					Rect rect = new Rect(item.iPosX, item.iPosY + 26, 26, 26);
+					Rect rect = new Rect(item.iPosX, item.iPosY + bmp.Height, bmp.Width, bmp.Height);
+					Rect tRect = new Rect(0, 0, ActualWidth, ActualHeight + bmp.Height * 2);
 					if (tRect.Contains(rect))
 					{
 						DrawDropImg(dc, item.iPosX, item.iPosY);
@@ -189,7 +198,7 @@ namespace dropAnimation
 				{
 					//double x = iPosY / (ActualHeight + 26 * 2);
 					//double y = Sine(x);
-					Rect SuffixRect = new Rect(iPosX, iPosY, 26, 26);
+					Rect SuffixRect = new Rect(iPosX, iPosY, bmp.Width, bmp.Height);
 					dc.DrawImage(bmp, SuffixRect);
 				}
 			}
