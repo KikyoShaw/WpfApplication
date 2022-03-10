@@ -43,7 +43,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid Background="#FEF6F5">
+    <Grid Background="#FEF6F5" MouseLeftButtonDown="Btn_Down">
         <StackPanel Height="280" VerticalAlignment="Top">
             <StackPanel.Background>
                 <ImageBrush ImageSource="{StaticResource Res_FansBg}"/>
@@ -113,7 +113,7 @@
                             </Grid>
                         </StackPanel>
                         <Grid Margin="0 217 0 0" VerticalAlignment="Top">
-                            <Button Width="162" Height="29" Cursor="Hand" 
+                            <Button x:Name="btn" Width="162" Height="29" Cursor="Hand" 
                                     Visibility="Visible">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
