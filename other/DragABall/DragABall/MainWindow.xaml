@@ -1,0 +1,14 @@
+﻿<Window x:Class="DragABall.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="拉一个小球" Height="480" Width="640" Loaded="Window_Loaded" MouseLeftButtonUp="Window_MouseLeftButtonUp">
+    <Grid Name="layout">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <Label Content="流体粘性系数:"></Label>
+            <TextBox Name="tbx_Eta" Text="100"></TextBox>
+            <Label Content="小球密度:"></Label>
+            <TextBox Name="tbx_Rho" Text="1"></TextBox>
+        </StackPanel>
+        <Ellipse Stroke="#FF000000" x:Name="moveObj" Width="64" Height="64" Fill="#FF70F1CE"></Ellipse>
+    </Grid>
+</Window>
