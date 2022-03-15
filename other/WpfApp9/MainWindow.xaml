@@ -1,0 +1,29 @@
+﻿<Window x:Class="WpfApp9.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp9"
+        xmlns:effect1="clr-namespace:ShaderEffectTemplate.MyEffect1"
+        mc:Ignorable="d" 
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="CanResize"
+        WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown"
+        Title="MainWindow" Height="600" Width="800">
+    
+    <Grid >
+        <MediaElement x:Name="ggggg" LoadedBehavior="Manual"  UnloadedBehavior="Stop"  HorizontalAlignment="Left"
+                      MediaEnded="MediaElement_MediaEnded" MediaOpened="MediaElement_Loaded" MediaFailed="ggggg_MediaFailed"
+                      Height="560" VerticalAlignment="Bottom" BufferingStarted="ggggg_BufferingStarted"  BufferingEnded="ggggg_BufferingEnded" >
+            <MediaElement.Effect>
+                <effect1:MyEffect1 TransparentColor="#101010" x:Name="testEffect" />
+            </MediaElement.Effect>
+        </MediaElement>
+
+        <TextBlock Text="demo" FontSize="64" Foreground="Red" />
+        <Slider x:Name="sliderPosition" 
+            HorizontalAlignment="Left" 
+            Margin="119,90,0,0" Grid.Row="1" 
+            VerticalAlignment="Top" Width="500" Height="18"/>
+    </Grid>
+</Window>
