@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\00.png" />
+    <None Remove="Resources\01.png" />
+    <None Remove="Resources\02.png" />
+    <None Remove="Resources\03.png" />
+    <None Remove="Resources\04.png" />
+    <None Remove="Resources\05.png" />
+    <None Remove="Resources\06.png" />
+    <None Remove="Resources\07.png" />
+    <None Remove="Resources\08.png" />
+    <None Remove="Resources\09.png" />
+    <None Remove="Resources\10.png" />
+    <None Remove="Resources\11.png" />
+    <None Remove="Resources\open_super_fans_bg_dark.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\00.png" />
+    <Resource Include="Resources\01.png" />
+    <Resource Include="Resources\02.png" />
+    <Resource Include="Resources\03.png" />
+    <Resource Include="Resources\04.png" />
+    <Resource Include="Resources\05.png" />
+    <Resource Include="Resources\06.png" />
+    <Resource Include="Resources\07.png" />
+    <Resource Include="Resources\08.png" />
+    <Resource Include="Resources\09.png" />
+    <Resource Include="Resources\10.png" />
+    <Resource Include="Resources\11.png" />
+    <Resource Include="Resources\open_super_fans_bg_dark.png" />
+  </ItemGroup>
+
+</Project>
