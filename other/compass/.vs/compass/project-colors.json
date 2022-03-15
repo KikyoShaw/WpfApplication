@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "0f150652-c0f0-4722-945d-d0536cc1dd85": {
+      "ProjectGuid": "0f150652-c0f0-4722-945d-d0536cc1dd85",
+      "DisplayName": "compass",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
