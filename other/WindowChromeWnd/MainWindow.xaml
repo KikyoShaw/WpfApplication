@@ -1,0 +1,20 @@
+﻿<Window
+    x:Class="WindowChromeTest452.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WindowChromeTest452"
+    Title="标题"
+    Width="600"
+    Height="300"
+    Style="{StaticResource WindowDefaultStyleKey}">
+    <Grid>
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="50"
+            FontWeight="Bold"
+            Foreground="#0078d4"
+            Text="丑萌气质狗" />
+    </Grid>
+</Window>

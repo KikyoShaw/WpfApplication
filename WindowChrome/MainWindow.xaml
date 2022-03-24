@@ -1,0 +1,62 @@
+﻿<Window x:Class="WindowChrome.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        WindowStyle="None" ResizeMode="CanMinimize"
+        Title="MainWindow" Height="550" Width="900">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="-1" ResizeBorderThickness="50"/>
+    </WindowChrome.WindowChrome>
+
+    <Window.Template>
+        <ControlTemplate TargetType="Window">
+            <Border Padding="64" Background="Transparent">
+                <Border CornerRadius="16" Background="White">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="64" />
+                    </Border.Effect>
+                    <ContentPresenter ClipToBounds="True" />
+                </Border>
+            </Border>
+        </ControlTemplate>
+    </Window.Template>
+    
+    <!--<Window.Template>
+        <ControlTemplate TargetType="{x:Type Window}">
+            <Border />
+        </ControlTemplate>
+    </Window.Template>-->
+
+    <Grid
+        MouseEnter="Grid_MouseEnter"
+        MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <!--<Rectangle x:Name="BackgroundRectangle" Margin="0 16" Fill="#d0d1d6">
+            <Rectangle.RenderTransform>
+                <TranslateTransform />
+            </Rectangle.RenderTransform>
+            <Rectangle.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <BeginStoryboard.Storyboard>
+                            <Storyboard RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="BackgroundRectangle"
+                                                   Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                   From="800" To="-800" />
+                            </Storyboard>
+                        </BeginStoryboard.Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Rectangle.Triggers>
+        </Rectangle>-->
+        
+        <TextBlock FontSize="64" Foreground="#0083d0" FontWeight="Light"
+                   TextAlignment="Center" VerticalAlignment="Center">
+            <Run Text="虎牙直播"/>
+            <LineBreak />
+            <Run Text="https://www.huya.com/"/>
+        </TextBlock>
+    </Grid>
+    
+</Window>
