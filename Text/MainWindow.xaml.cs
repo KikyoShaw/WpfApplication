@@ -25,6 +25,13 @@ namespace Text
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			//string ss = "true1";
+
+			//bool state = false;
+
+			//bool.TryParse(ss, out state);
+
 		}
 
 

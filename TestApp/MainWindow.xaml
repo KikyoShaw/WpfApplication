@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestApp"
         mc:Ignorable="d"   
-        Title="MainWindow" Height="592" Width="354">
+        Title="xxx" Height="592" Width="854">
 
     <Window.Resources>
        
@@ -13,8 +13,11 @@
     
     <!--Background="Gray"-->
     <Grid Margin="0 33 0 0">
+        <Grid Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Red" Margin="18 0 0 0" x:Name="Grids"/>
         <!--<local:BuyFansWnd/>-->
-        <local:FansTaskInfoWnd/>
+        <!--<local:FansTaskInfoWnd/>-->
+        <local:ACIntimacyEffect1 x:Name="ttt"/>
+        <Button Width="100" Height="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="btn_clicked" x:Name="BtnGird" Margin="0 0 18 18"/>
     </Grid>
     
 </Window>

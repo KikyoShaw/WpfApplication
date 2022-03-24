@@ -18,17 +18,49 @@ namespace TestApp
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
+	/// 
+
+	public class ItemInfo
+	{
+		public string Name { get; set; } = "";
+	}
 	public partial class MainWindow : Window
 	{
+		private static Lazy<MainWindow> lazyInstance = new Lazy<MainWindow>(() => new MainWindow());
+		public static MainWindow Instance => lazyInstance.Value;
+
+		public Dictionary<long, ItemInfo> infos { get; set;} = new Dictionary<long, ItemInfo>();
 		public MainWindow()
 		{
 			InitializeComponent();
 
-			List<string> list = new List<string>();
-			list.Add("111");
-			if(!list.Contains("111"))
-				list.Add("111");
-			list.Add("111");
+			//List<string> list = new List<string>();
+			//list.Add("111");
+			//if(!list.Contains("111"))
+			//	list.Add("111");
+			//list.Add("111");
+
+			ItemInfo _info = new ItemInfo();
+			_info.Name = "111";
+			infos.Add(0, _info);
+			if(infos.ContainsKey(0))
+			{
+				var item = infos[0];
+				item.Name = "222";
+			}
+
+
+		}
+
+		private void btn_clicked(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				Point pStartPos = this.PointFromScreen(BtnGird.PointToScreen(new Point(0, 0)));
+				Point pEndPos = this.PointFromScreen(Grids.PointToScreen(new Point(0, 0)));
+				ttt.StartT1(pStartPos, pEndPos);
+			}
+			catch { }
 		}
 	}
 }
