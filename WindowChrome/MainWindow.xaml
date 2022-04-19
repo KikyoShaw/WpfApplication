@@ -4,13 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        WindowStyle="None" ResizeMode="CanMinimize"
+        
         Title="MainWindow" Height="550" Width="900">
     <WindowChrome.WindowChrome>
-        <WindowChrome GlassFrameThickness="-1" ResizeBorderThickness="50"/>
+        <WindowChrome GlassFrameThickness="-1" ResizeBorderThickness="2"/>
     </WindowChrome.WindowChrome>
 
-    <Window.Template>
+    <!--WindowStyle="None" ResizeMode="CanMinimize"-->
+    
+    <!--<Window.Template>
         <ControlTemplate TargetType="Window">
             <Border Padding="64" Background="Transparent">
                 <Border CornerRadius="16" Background="White">
@@ -21,7 +23,7 @@
                 </Border>
             </Border>
         </ControlTemplate>
-    </Window.Template>
+    </Window.Template>-->
     
     <!--<Window.Template>
         <ControlTemplate TargetType="{x:Type Window}">
@@ -29,7 +31,7 @@
         </ControlTemplate>
     </Window.Template>-->
 
-    <Grid
+    <Grid Background="#AAFFFFFF"
         MouseEnter="Grid_MouseEnter"
         MouseLeftButtonDown="Grid_MouseLeftButtonDown">
         <!--<Rectangle x:Name="BackgroundRectangle" Margin="0 16" Fill="#d0d1d6">

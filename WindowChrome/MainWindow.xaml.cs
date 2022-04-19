@@ -23,6 +23,14 @@ namespace WindowChrome
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			var JoinTime = TimeZoneInfo.ConvertTime(
+					   new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(1649407918),
+					   TimeZoneInfo.Local);
+
+			var times = DateTimeOffset.FromUnixTimeMilliseconds(1649407918).DateTime.ToLocalTime();
+
+
 		}
 
 		private void Grid_MouseEnter(object sender, MouseEventArgs e)

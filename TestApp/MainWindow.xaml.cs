@@ -43,10 +43,13 @@ namespace TestApp
 			ItemInfo _info = new ItemInfo();
 			_info.Name = "111";
 			infos.Add(0, _info);
-			if(infos.ContainsKey(0))
+			ItemInfo _info1 = new ItemInfo();
+			_info1.Name = "444";
+			if (infos.ContainsKey(0))
 			{
 				var item = infos[0];
-				item.Name = "222";
+				item = _info1;
+				//item.Name = "222";
 			}
 
 
