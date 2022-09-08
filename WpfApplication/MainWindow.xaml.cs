@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,9 +25,51 @@ namespace WpfApplication
 		public MainWindow()
 		{
 			InitializeComponent();
-			initText();
+			//initText();
 
+            string sUrl = @"https://www.baidu.com1/";
+
+
+            var sResponse = GetRequest(sUrl);
 		}
+
+        private string GetRequest(string sUrl)
+        {
+            string sResponse = "";
+
+            try
+            {
+                // 根据uri创建HttpWebRequest对象 
+                HttpWebRequest httpReq = (HttpWebRequest)WebRequest.Create(sUrl);
+                //对发送的数据不使用缓存 
+                httpReq.AllowWriteStreamBuffering = false;
+                httpReq.Timeout = 4000;
+                httpReq.Method = "GET";
+                //获取服务器端的响应 
+                HttpWebResponse webResponse = (HttpWebResponse)httpReq.GetResponse();
+                Stream stream = webResponse.GetResponseStream();
+                if (stream == null)
+                    return null;
+                StreamReader streamReader = new StreamReader(stream);
+                //读取服务器端返回的消息 
+                sResponse = streamReader.ReadToEnd();
+                stream.Close();
+                streamReader.Close();
+                int iStatusCode = (int)webResponse.StatusCode;
+                if ((iStatusCode / 100) != 2)
+                {
+                    //HuyaFX.Log.LogUtils.Error("Advertise",
+                    //    "VideoMgr do GetRequest url:" + sUrl + ", status code: " + iStatusCode.ToString() + " msg:" + sResponse);
+                    sResponse = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                //HuyaFX.Log.LogUtils.Error("Advertise", ex.Message);
+            }
+
+            return sResponse;
+        }
 
 		private void initText()
 		{
