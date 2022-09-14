@@ -4,11 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        
+        Background="Black"
         Title="MainWindow" Height="550" Width="900">
     <WindowChrome.WindowChrome>
-        <WindowChrome GlassFrameThickness="-1" ResizeBorderThickness="2"/>
+        <WindowChrome GlassFrameThickness="0 1 0 0" ResizeBorderThickness ="10"
+                      NonClientFrameEdges="Left, Bottom, Right">
+        </WindowChrome>
     </WindowChrome.WindowChrome>
+
+    <Window.Template>
+        <ControlTemplate TargetType="Window">
+            <Border Padding="0,1,0,0">
+                <Grid Margin="0 1 0 0"
+                    Background="Black"
+                      MouseEnter="Grid_MouseEnter"
+                      MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                    <TextBlock FontSize="64" Foreground="#0083d0" FontWeight="Light"
+                               TextAlignment="Center" VerticalAlignment="Center">
+                        <Run Text="虎牙直播"/>
+                        <LineBreak />
+                        <Run Text="https://www.huya.com/"/>
+                    </TextBlock>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+    </Window.Template>
 
     <!--WindowStyle="None" ResizeMode="CanMinimize"-->
     
@@ -31,34 +51,39 @@
         </ControlTemplate>
     </Window.Template>-->
 
-    <Grid Background="#AAFFFFFF"
-        MouseEnter="Grid_MouseEnter"
-        MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-        <!--<Rectangle x:Name="BackgroundRectangle" Margin="0 16" Fill="#d0d1d6">
-            <Rectangle.RenderTransform>
-                <TranslateTransform />
-            </Rectangle.RenderTransform>
-            <Rectangle.Triggers>
-                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                    <BeginStoryboard>
-                        <BeginStoryboard.Storyboard>
-                            <Storyboard RepeatBehavior="Forever">
-                                <DoubleAnimation Storyboard.TargetName="BackgroundRectangle"
-                                                   Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
-                                                   From="800" To="-800" />
-                            </Storyboard>
-                        </BeginStoryboard.Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Rectangle.Triggers>
-        </Rectangle>-->
-        
-        <TextBlock FontSize="64" Foreground="#0083d0" FontWeight="Light"
-                   TextAlignment="Center" VerticalAlignment="Center">
-            <Run Text="虎牙直播"/>
-            <LineBreak />
-            <Run Text="https://www.huya.com/"/>
-        </TextBlock>
-    </Grid>
+    <!--<Border Padding="0,1,0,0">
+        <Grid Background="Black"
+              Margin="0 -1,0,0"
+              MouseEnter="Grid_MouseEnter"
+              MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+
+            --><!--<Rectangle x:Name="BackgroundRectangle" Margin="0 16" Fill="#d0d1d6">
+                <Rectangle.RenderTransform>
+                    <TranslateTransform />
+                </Rectangle.RenderTransform>
+                <Rectangle.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard>
+                            <BeginStoryboard.Storyboard>
+                                <Storyboard RepeatBehavior="Forever">
+                                    <DoubleAnimation Storyboard.TargetName="BackgroundRectangle"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                     From="800" To="-800" />
+                                </Storyboard>
+                            </BeginStoryboard.Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Rectangle.Triggers>
+            </Rectangle>--><!--
+
+            <TextBlock FontSize="64" Foreground="#0083d0" FontWeight="Light"
+                       TextAlignment="Center" VerticalAlignment="Center">
+                <Run Text="虎牙直播"/>
+                <LineBreak />
+                <Run Text="https://www.huya.com/"/>
+            </TextBlock>
+        </Grid>
+    </Border>-->
+    
     
 </Window>

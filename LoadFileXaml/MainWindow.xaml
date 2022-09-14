@@ -1,0 +1,18 @@
+﻿<Window x:Class="LoadFileXaml.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoadFileXaml"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Grid>
+        <StackPanel Margin="0 10 0 0" Orientation="Horizontal" Height="50" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Button Width="100" Height="45" Content="LoadFileXaml" Click="ButtonBase_OnClick"/>
+            <Button Margin="10 0 0 0" Width="100" Height="45" Content="test" Click="ButtonBase2_OnClick"/>
+        </StackPanel>
+        <local:Test1 x:Name="Test1" Margin="0 80 0 10"/>
+    </Grid>
+
+</Window>
