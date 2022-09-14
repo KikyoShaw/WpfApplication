@@ -27,7 +27,7 @@ namespace WpfApplication
 			InitializeComponent();
 			//initText();
 
-            string sUrl = @"https://www.baidu.com1/";
+            string sUrl = @"https://www.baidu.com/";
 
 
             var sResponse = GetRequest(sUrl);
