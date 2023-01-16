@@ -40,6 +40,26 @@ namespace TestApp
 			//	list.Add("111");
 			//list.Add("111");
 
+            string newUrl = @"https://huyaimg.msstatic.com/cdnimage/cornermark/phpyZRd891653556448.png?spformat=png,webp";
+
+            //var index = newUrl.IndexOf("?", StringComparison.Ordinal);
+            //string sMd5 = newUrl.Substring(index + 1);
+
+            var uri = new Uri(newUrl);
+            var queryStrings = System.Web.HttpUtility.ParseQueryString(uri.Query);
+            if (queryStrings.Count <= 0 || queryStrings["spformat"] == null)
+            {
+            }
+
+            string sAction = queryStrings["spformat"];
+
+            if (sAction.Contains("webp"))
+            {
+				var index = newUrl.LastIndexOf(".", StringComparison.Ordinal);
+                string sMd5 = newUrl.Substring(index + 1);
+                var replace = newUrl.Replace(sMd5, "webp");
+            }
+
 			ItemInfo _info = new ItemInfo();
 			_info.Name = "111";
 			infos.Add(0, _info);

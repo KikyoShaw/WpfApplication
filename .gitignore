@@ -19,6 +19,8 @@
 /Text/bin
 /WindowChrome/obj
 /WindowChrome/bin
+/wpfctrl/obj
+/wpfctrl/bin
 
 /LoadFileXaml/bin/Debug/netcoreapp3.1/*.dll
 /LoadFileXaml/bin/Debug/netcoreapp3.1/*.json

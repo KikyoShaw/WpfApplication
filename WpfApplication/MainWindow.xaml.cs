@@ -22,15 +22,14 @@ namespace WpfApplication
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public MainWindow()
+        public MainWindow()
 		{
 			InitializeComponent();
 			//initText();
 
             string sUrl = @"https://www.baidu.com/";
 
-
-            var sResponse = GetRequest(sUrl);
+			// var sResponse = GetRequest(sUrl);
 		}
 
         private string GetRequest(string sUrl)
