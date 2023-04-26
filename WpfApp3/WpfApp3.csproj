@@ -4,19 +4,14 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-	<UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\1.png" />
+    <None Remove="Resources\1.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MvvmLight" Version="5.4.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Resources\1.png" />
+    <Resource Include="Resources\1.jpg" />
   </ItemGroup>
 
 </Project>

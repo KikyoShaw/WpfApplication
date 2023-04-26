@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows;
 using GalaSoft.MvvmLight;
 
 namespace wpfctrl
@@ -48,12 +49,21 @@ namespace wpfctrl
 
         public void InsertItemInfo()
         {
-            var tempItem = new ObservableCollection<TextItem>();
-            var info = new TextItem();
-            info.Text1 = $"机器人N号";
-            info.Text2 = $"序列号N号";
-            tempItem.Add(info);
-            ItemsInfo = tempItem;
+            //var tempItem = new ObservableCollection<TextItem>();
+            //var info = new TextItem();
+            //info.Text1 = $"机器人N号";
+            //info.Text2 = $"序列号N号";
+            //tempItem.Add(info);
+            //ItemsInfo = tempItem;
+
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                ItemsInfo.Clear();
+                var info = new TextItem();
+                info.Text1 = $"机器人N号";
+                info.Text2 = $"序列号N号";
+                ItemsInfo.Add(info);
+            });
         }
     }
 }

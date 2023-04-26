@@ -29,7 +29,7 @@ namespace dropAnimation
 		{
 			try
 			{
-				DropControl.initRect();
+				//DropControl.initRect();
 			}
 			catch { }
 		}

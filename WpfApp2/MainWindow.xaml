@@ -1,0 +1,125 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        PreviewKeyDown="MainWindow_OnPreviewKeyDown"
+        PreviewKeyUp="MainWindow_OnPreviewKeyUp">
+
+    <Grid Background="#2E3138">
+        <!--<Grid Margin="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="24"/>
+            </Grid.ColumnDefinitions>
+            <local:UserControl1/>
+            <Button x:Name="GiftBtn" Grid.Column="1" Width="24" Height="44"
+                    Cursor="Hand" Click="GiftBtn_OnClick"/>
+            --><!--<Image x:Name="GiftBtn" Grid.Column="1" Width="24" Height="44" Source="/WpfApp2;Component/Resources/button.png" 
+                   Cursor="Hand" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>--><!--
+        </Grid>-->
+
+        <!--<Polygon  
+            Points="300,200 400,125 400,275"  
+            Stroke="#FFE0E0E0"
+            StrokeThickness="1">
+        </Polygon>-->
+
+        <!--<Path Data="M 30 10 L 30,0 20,0" Stroke="Black" StrokeThickness="1" Margin="100"/>-->
+
+        <!--<Path Stroke="Yellow"
+              StrokeThickness="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Path.Data>
+                <LineGeometry StartPoint="10,20" EndPoint="20,30" />
+            </Path.Data>
+        </Path>
+        <Path Stroke="Yellow"
+              StrokeThickness="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Path.Data>
+                <LineGeometry StartPoint="10,20" EndPoint="20,30" />
+            </Path.Data>
+        </Path>-->
+
+        <!--<Border Height="24" Width="70" Background="#3E4147" BorderBrush="#3E4147" BorderThickness="1" CornerRadius="12">
+            <StackPanel Orientation="Horizontal" Margin="8 0" VerticalAlignment="Center">
+                <TextBlock Text="切换用户" FontSize="10" Foreground="White"/>
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="4 2 0 0">
+                    <Line X1="0" Y1="4" X2="4" Y2="0" Stroke="White" StrokeThickness="1"/>
+                    <Line X1="4" Y1="0" X2="8" Y2="4" Stroke="White" StrokeThickness="1"/>
+                </Grid>
+            </StackPanel>
+        </Border>-->
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="粉丝团任务" Foreground="White"/>
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="4 2 0 0">
+                <Line X1="0" Y1="0" X2="4" Y2="4" Stroke="White" StrokeThickness="1"/>
+                <Line X1="4" Y1="4" X2="0" Y2="8" Stroke="White" StrokeThickness="1"/>
+            </Grid>
+
+            <Grid Margin="10 0 0 0">
+                <Border Height="18" Width="18" CornerRadius="9" Background="#9B4A4E">
+                    <TextBlock Text="?" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                               Foreground="White" FontWeight="Bold"/>
+                </Border>
+            </Grid>
+
+        </StackPanel>
+
+        <!--<Grid VerticalAlignment="Center">
+            <Line X1="10" Y1="10" X2="16" Y2="16" Stroke="Black" StrokeThickness="1"/>
+            <Line X1="16" Y1="16" X2="22" Y2="10" Stroke="Black" StrokeThickness="1"/>
+        </Grid>
+
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Line X1="10" Y1="16" X2="16" Y2="10" Stroke="Black" StrokeThickness="1"/>
+            <Line X1="16" Y1="10" X2="22" Y2="16" Stroke="Black" StrokeThickness="1"/>
+        </Grid>-->
+
+        <Popup x:Name="TreasurePopup" IsOpen="False" Focusable="False" StaysOpen="False" AllowsTransparency="True" Placement="Top" 
+               PlacementTarget="{Binding ElementName=GiftBtn}" HorizontalOffset="-330" VerticalOffset="-10">
+            <Grid Height="268" x:Name="TreasurePopupGrid">
+                <Grid.Effect>
+                    <DropShadowEffect ShadowDepth="0" BlurRadius="6" Opacity="0.5" Color="#FF000000"/>
+                </Grid.Effect>
+                <Grid Height="260" Width="380" VerticalAlignment="Top">
+                    <Border Height="260" Width="380" Background="#2E3138" 
+                            BorderThickness="0" BorderBrush="#FFE0E0E0" CornerRadius="16">
+                        <ScrollViewer x:Name="PropScroll" Margin="10" VerticalScrollBarVisibility="Disabled">
+                            <ItemsControl ItemsSource="{Binding vProps}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Image Height="44" Width="44" Source="{Binding sIconUrl}" Stretch="Uniform" Margin="0 0 6 10"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                    </Border>
+                </Grid>
+                <Grid HorizontalAlignment="Right" Height="8" VerticalAlignment="Bottom" Margin="0,0,26,0">
+                    <Path Stroke="#2E3138"
+                          StrokeThickness="0" Fill="#2E3138" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                        <Path.Data>
+                            <PathGeometry Figures="
+                              M 30,8 
+                              L 30,0 22,0
+                              L 30,8 38,0
+                              L 38 0 30 0
+                              "/>
+                        </Path.Data>
+                    </Path>
+                </Grid>
+            </Grid>
+        </Popup>
+    </Grid>
+
+</Window>

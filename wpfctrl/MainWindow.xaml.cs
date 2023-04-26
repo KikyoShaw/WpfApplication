@@ -25,6 +25,13 @@ namespace wpfctrl
         {
             DataContext = MainVm.Instance;
             InitializeComponent();
+
+            string dest = "Http";
+
+            if (!dest.StartsWith("http"))
+            {
+                int i = 0;
+            }
         }
 
         private void ModifyUI()
