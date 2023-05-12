@@ -16,6 +16,23 @@
             </Rectangle>
             <TextBlock Text=" 文本" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamily}}" FontSize="{DynamicResource {x:Static SystemFonts.CaptionFontSize}}" FontWeight="{DynamicResource {x:Static SystemFonts.CaptionFontWeight}}"></TextBlock>
         </Grid>-->
+
+        <Polygon Stroke="Black" StrokeThickness="2" Fill="LightBlue"
+                 HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Polygon.Points>
+                <PointCollection>
+                    <Point X="0" Y="0" />
+                    <Point X="100" Y="50" />
+                    <Point X="200" Y="0" />
+                    <Point X="150" Y="100" />
+                    <Point X="200" Y="200" />
+                    <Point X="100" Y="150" />
+                    <Point X="0" Y="200" />
+                    <Point X="50" Y="100" />
+                </PointCollection>
+            </Polygon.Points>
+        </Polygon>
+
     </Grid>
 
 </Window>

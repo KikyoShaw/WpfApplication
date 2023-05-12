@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="WpfPopupAni.UserControl4"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfPopupAni"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Image x:Name="carouselImage" Margin="10"
+               HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill">
+            <Image.Resources>
+                <Storyboard x:Key="SwitchImageStoryboard">
+                    <DoubleAnimation Storyboard.TargetName="carouselImage" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" BeginTime="0:0:0" />
+                    <DoubleAnimation Storyboard.TargetName="carouselImage" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1" BeginTime="0:0:3" />
+                </Storyboard>
+            </Image.Resources>
+        </Image>
+    </Grid>
+</UserControl>
