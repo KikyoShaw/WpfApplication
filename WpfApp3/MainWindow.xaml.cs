@@ -29,6 +29,11 @@ namespace WpfApp3
             var result = CheckIsUrlFormat(sUrl);
 
             bool result2 = Uri.IsWellFormedUriString(sUrl, UriKind.RelativeOrAbsolute);
+
+
+            int tt = 39;
+            int kk = tt / 60;
+            var hh = tt % 60;
         }
 
         /// <summary>
@@ -49,17 +54,47 @@ namespace WpfApp3
         /// <returns>成功返回true 失败返回false</returns>
         public static bool CheckIsFormat(string strRegex, string strValue)
         {
-            if (strValue != null && strValue.Trim() != "")
+            try
             {
-                Regex re = new Regex(strRegex);
-                if (re.IsMatch(strValue))
+                if (strValue != null && strValue.Trim() != "")
                 {
-                    return true;
+                    Regex re = new Regex(strRegex);
+                    if (re.IsMatch(strValue))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-                else
-                {
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 检测链接是否为合法的网址格式
+        /// </summary>
+        /// <param name="uri">待检测的链接</param>
+        /// <returns></returns>
+        public bool CheckUrlIsValid(string uri)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(uri))
                     return false;
-                }
+
+                var regex = @"(http://)?([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?";
+                Regex re = new Regex(regex);
+                return re.IsMatch(uri);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
             return false;
         }
