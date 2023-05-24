@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 
 namespace WpfApp5
@@ -13,9 +14,6 @@ namespace WpfApp5
     /// </summary>
     public partial class UserControl2 : UserControl
     {
-        private int size1 = 20;
-        private int size2 = 150;
-
         public UserControl2()
         {
             InitializeComponent();
@@ -27,9 +25,10 @@ namespace WpfApp5
             {
                 var ellipse = new Ellipse()
                 {
-                    Width = size1,
-                    Height = size1,
-                    Fill = Brushes.Red
+                    Width = 10,
+                    Height = 10,
+                    Fill = Brushes.LightBlue,
+                    Opacity = 1,
                 };
 
                 var point = e.GetPosition(Canvas);
@@ -37,38 +36,66 @@ namespace WpfApp5
                 ellipse.RenderTransform = translateTransform;
                 Canvas.Children.Add(ellipse);
 
-                var storyboard = new Storyboard();
-
-                //波纹扩散动画
-                var widthAnimation = new DoubleAnimation(toValue: size2, new Duration(TimeSpan.FromSeconds(1)));
-                Storyboard.SetTargetProperty(widthAnimation, new PropertyPath("Width"));
+                //波纹扩散动画特效
+                //宽度从10到200
+                var widthAnimation = new DoubleAnimation
+                {
+                    From = 10,
+                    To = 200,
+                    Duration = TimeSpan.FromSeconds(1.5),
+                    AutoReverse = false,
+                };
+                Storyboard.SetTargetProperty(widthAnimation, new PropertyPath(Ellipse.WidthProperty));
                 Storyboard.SetTarget(widthAnimation, ellipse);
-                storyboard.Children.Add(widthAnimation);
-                var heightAnimation = new DoubleAnimation(toValue: size2, new Duration(TimeSpan.FromSeconds(1)));
-                Storyboard.SetTargetProperty(heightAnimation, new PropertyPath("Height"));
+                //高度从10到200
+                var heightAnimation = new DoubleAnimation
+                {
+                    From = 10,
+                    To = 200,
+                    Duration = TimeSpan.FromSeconds(1.5),
+                    AutoReverse = false,
+                };
+                Storyboard.SetTargetProperty(heightAnimation, new PropertyPath(Ellipse.HeightProperty));
                 Storyboard.SetTarget(heightAnimation, ellipse);
-                storyboard.Children.Add(heightAnimation);
-                //波纹扩散淡出特效
-                var opacityAnimation = new DoubleAnimation(toValue: 0, new Duration(TimeSpan.FromSeconds(1)));
-                Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath("Opacity"));
-                Storyboard.SetTarget(opacityAnimation, ellipse);
-                storyboard.Children.Add(opacityAnimation);
-                //波纹从鼠标点击中心开始扩散
-                //ReSharper disable once PossibleLossOfFraction
-                var translateTransformX = translateTransform.X - (size2 - size1) / 2;
-                var xAnimation = new DoubleAnimation(toValue: translateTransformX, new Duration(TimeSpan.FromSeconds(1)));
-                Storyboard.SetTargetProperty(xAnimation,
-                    new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.X)"));
-                Storyboard.SetTarget(xAnimation, ellipse);
-                storyboard.Children.Add(xAnimation);
-                // ReSharper disable once PossibleLossOfFraction
-                var translateTransformY = translateTransform.Y - (size2 - size1) / 2;
-                var yAnimation = new DoubleAnimation(toValue: translateTransformY, new Duration(TimeSpan.FromSeconds(1)));
-                Storyboard.SetTargetProperty(yAnimation,
-                    new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.Y)"));
-                Storyboard.SetTarget(yAnimation, ellipse);
-                storyboard.Children.Add(yAnimation);
 
+                //波纹扩散淡出动画特效
+                var opacityAnimation = new DoubleAnimation
+                {
+                    From = 1,
+                    To = 0,
+                    Duration = TimeSpan.FromSeconds(1.5),
+                };
+                Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath(Ellipse.OpacityProperty));
+                Storyboard.SetTarget(opacityAnimation, ellipse);
+
+                //波纹从鼠标点击中心开始扩散动画特效
+                //x轴上开始扩散
+                //ReSharper disable once PossibleLossOfFraction
+                var posX = translateTransform.X - (200 - 10) / 2;
+                var posXAnimation = new DoubleAnimation
+                {
+                    To = posX,
+                    Duration = TimeSpan.FromSeconds(1.5),
+                };
+                Storyboard.SetTargetProperty(posXAnimation, new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.X)"));
+                Storyboard.SetTarget(posXAnimation, ellipse);
+                //y轴上开始扩散
+                // ReSharper disable once PossibleLossOfFraction
+                var posY = translateTransform.Y - (200 - 10) / 2;
+                var posYAnimation = new DoubleAnimation
+                {
+                    To = posY,
+                    Duration = TimeSpan.FromSeconds(1.5),
+                };
+                Storyboard.SetTargetProperty(posYAnimation, new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.Y)"));
+                Storyboard.SetTarget(posYAnimation, ellipse);
+                //添加动画组
+                var storyboard = new Storyboard();
+                storyboard.Children.Add(widthAnimation);
+                storyboard.Children.Add(heightAnimation);
+                storyboard.Children.Add(opacityAnimation);
+                storyboard.Children.Add(posXAnimation);
+                storyboard.Children.Add(posYAnimation);
                 storyboard.Completed += (o, args) =>
                 {
                     Canvas.Children.Remove(ellipse);
