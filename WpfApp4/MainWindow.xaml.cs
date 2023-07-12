@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -99,6 +101,52 @@ namespace WpfApp4
             //}
 
 
+        }
+
+
+        private async Task Main(string[] args)
+        {
+            const string url = "https://example.com/file.zip";
+            const string destinationPath = "file.zip";
+            long totalSize;
+            using (HttpClient httpClient = new HttpClient())
+            {
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Head, url);
+                HttpResponseMessage response = await httpClient.SendAsync(request);
+                totalSize = response.Content.Headers.ContentRange.Length.GetValueOrDefault();
+            }
+
+            long localFileSize = 0;
+            if (File.Exists(destinationPath))
+                localFileSize = new FileInfo(destinationPath).Length;
+            
+            using (FileStream fileStream = new FileStream(destinationPath, FileMode.Append, FileAccess.Write, FileShare.None))
+            using (HttpClient httpClient = new HttpClient())
+            {
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
+                request.Headers.Range = new System.Net.Http.Headers.RangeHeaderValue(localFileSize, null);
+                HttpResponseMessage response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+                using (Stream responseStream = await response.Content.ReadAsStreamAsync())
+                {
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+                    DateTime progressReportTime = DateTime.Now;
+
+                    while ((bytesRead = await responseStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                    {
+                        fileStream.Write(buffer, 0, bytesRead);
+                        localFileSize += bytesRead;
+
+                        if ((DateTime.Now - progressReportTime).TotalSeconds >= 1)
+                        {
+                            Console.WriteLine($"下载进度: {(double)localFileSize / totalSize:F3}");
+                            progressReportTime = DateTime.Now;
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine("下载完成");
         }
     }
 }

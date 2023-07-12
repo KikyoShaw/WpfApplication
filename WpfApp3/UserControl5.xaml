@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="WpfApp3.UserControl5"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp3"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Run Foreground="Red">红</Run>
+                <Run Foreground="Orange">橙</Run>
+                <Run Foreground="Yellow">黄</Run>
+                <Run Foreground="Green">绿</Run>
+                <Run Foreground="Blue">蓝</Run>
+                <Run Foreground="Indigo">靛</Run>
+                <Run Foreground="Violet">紫</Run>
+            </TextBlock>
+
+            <TextBlock FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="20">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="Red" Offset="0.0" />
+                        <GradientStop Color="Orange" Offset="0.15" />
+                        <GradientStop Color="Yellow" Offset="0.3" />
+                        <GradientStop Color="Green" Offset="0.5" />
+                        <GradientStop Color="Blue" Offset="0.65" />
+                        <GradientStop Color="Indigo" Offset="0.8" />
+                        <GradientStop Color="Violet" Offset="1.0" />
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+                十三先生
+            </TextBlock>
+
+            <Grid Margin="0 20 0 0">
+                <Canvas>
+                    <Canvas.Triggers>
+                        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard RepeatBehavior="Forever">
+                                    <DoubleAnimation From="600" To="-100"
+                                                     Duration="0:0:5"
+                                                     Storyboard.TargetName="TextMarquee"
+                                                     Storyboard.TargetProperty="(Canvas.Left)">
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Canvas.Triggers>
+                    <TextBlock x:Name="TextMarquee" FontSize="24" FontWeight="Bold" Canvas.Top="50" Text="跑马灯效果" />
+                </Canvas>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

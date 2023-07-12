@@ -21,8 +21,8 @@
     <Grid>
         <Button Width="30" Height="20" HorizontalAlignment="Left" Click="Btn_Clicked"/>
         <!--<Image Width="26" Height="26" Source="{StaticResource Res_PopupClose}"/>-->
-        <local:drop Margin="30 0 30 0" x:Name="DropControl" SizeChanged="DropControl_SizeChanged"/>
-        <!--<local:EasterEggEffectBase Margin="30 0 30 0" x:Name="DropControl" SizeChanged="DropControl_SizeChanged" />-->
+        <!--<local:drop Margin="30 0 30 0" x:Name="DropControl" SizeChanged="DropControl_SizeChanged"/>-->
+        <local:EasterEggEffectBase Margin="30 0 30 0" x:Name="DropControl" SizeChanged="DropControl_SizeChanged" />
         <!--<local:drop x:Name="cc" HorizontalAlignment="Left" Height="417.114" Width="791.112" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Margin="0,0.007,0,0">
             <local:drop.RenderTransform>
                 <TransformGroup>
