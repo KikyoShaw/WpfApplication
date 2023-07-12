@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfAppTheme", "WpfAppTheme\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp6", "WpfApp6\WpfApp6.csproj", "{7843EF3A-495D-4E48-90CE-6361BE9C7C41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemWatcherTest", "FileSystemWatcherTest\FileSystemWatcherTest.csproj", "{767D729A-E464-464E-A2CF-1023834088F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -201,6 +203,14 @@ Global
 		{7843EF3A-495D-4E48-90CE-6361BE9C7C41}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7843EF3A-495D-4E48-90CE-6361BE9C7C41}.Release|x86.ActiveCfg = Release|Any CPU
 		{7843EF3A-495D-4E48-90CE-6361BE9C7C41}.Release|x86.Build.0 = Release|Any CPU
+		{767D729A-E464-464E-A2CF-1023834088F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{767D729A-E464-464E-A2CF-1023834088F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{767D729A-E464-464E-A2CF-1023834088F0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{767D729A-E464-464E-A2CF-1023834088F0}.Debug|x86.Build.0 = Debug|Any CPU
+		{767D729A-E464-464E-A2CF-1023834088F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{767D729A-E464-464E-A2CF-1023834088F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{767D729A-E464-464E-A2CF-1023834088F0}.Release|x86.ActiveCfg = Release|Any CPU
+		{767D729A-E464-464E-A2CF-1023834088F0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
