@@ -1,0 +1,21 @@
+﻿<Window x:Class="FileSystemWatcherTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileSystemWatcherTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Grid>
+        <Grid Margin="40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="PathTextBox" Height="32"/>
+            <Button Grid.Column="1" Margin="10 0 0 0" Height="32" Width="75" Content="选择文件夹" Click="ButtonBase_OnClick"/>
+        </Grid>
+    </Grid>
+
+</Window>
