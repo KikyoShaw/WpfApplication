@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,9 +39,17 @@ namespace dropAnimation
 		{
 			try
 			{
-				DropControl.InitDropItem();
-			}
+                //DropControl.ClearData();
+                //Thread newThread = new Thread(Work);
+                //newThread.Start();
+                DropControl.InitDropItem();
+            }
 			catch { }
 		}
-	}
+
+        private void Work()
+        {
+            DropControl.InitDropItem();
+        }
+    }
 }

@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.NetworkInformation;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
+using System.Text;
 
 namespace WpfApp6
 {
@@ -28,7 +32,125 @@ namespace WpfApp6
             //var adornerLayer = AdornerLayer.GetAdornerLayer(mainGrid);
             //adornerLayer?.Add(new SliderAdorner(mainGrid, slider));
 
-            CheckPc();
+            // CheckPc();
+            //TaskTest();
+        }
+
+        /// <summary>
+        /// 获取MD5
+        /// </summary>
+        /// <param name="sUrl"></param>
+        /// <returns></returns>
+        private string GetMd5(string sUrl)
+        {
+            if (string.IsNullOrWhiteSpace(sUrl))
+                return "";
+
+            using System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            byte[] ret = md5.ComputeHash(System.Text.Encoding.UTF8.GetBytes(sUrl));
+
+            StringBuilder sBuilder = new StringBuilder();
+            foreach (var t in ret)
+                sBuilder.Append(t.ToString("x2"));
+            return sBuilder.ToString();
+        }
+
+        /// <summary>
+        /// 获取哈希256
+        /// </summary>
+        /// <param name="sUrl"></param>
+        /// <returns></returns>
+        private string GetHash256(string sUrl)
+        {
+            if (string.IsNullOrWhiteSpace(sUrl))
+                return "";
+
+            using SHA256 sha256 = SHA256.Create();
+            byte[] inputBytes = Encoding.ASCII.GetBytes(sUrl);
+            byte[] hashBytes = sha256.ComputeHash(inputBytes);
+
+            StringBuilder hashBuilder = new StringBuilder();
+            foreach (var t in hashBytes)
+                hashBuilder.Append(t.ToString("x2"));
+
+            return hashBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Task 测试
+        /// </summary>
+        private void TaskTest()
+        {
+            // 设置固定的线程数
+            int fixedWorkerThreads = 2;
+
+            // 获取当前线程池中异步I/O线程数量
+            //ThreadPool.GetMinThreads(out _, out int currentMinCompletionThreads);
+            //ThreadPool.GetMaxThreads(out _, out int currentMaxCompletionThreads);
+
+            ThreadPool.SetMinThreads(fixedWorkerThreads, fixedWorkerThreads);
+            ThreadPool.SetMaxThreads(fixedWorkerThreads, fixedWorkerThreads);
+
+            ManualResetEvent enEvent = new ManualResetEvent(false);
+            List<Task> tasks = new List<Task>();
+            // 使用 Task.Run 运行任务 (默认将在 ThreadPool 中运行)
+            for (int i = 1; i <= 30; i++)
+            {
+                int taskNumber = i;
+                tasks.Add(Task.Run(() =>
+                {
+                    enEvent.WaitOne();
+                    int currentThreadId = Thread.CurrentThread.ManagedThreadId;
+                    System.Diagnostics.Trace.WriteLine($"{nameof(Task)} {taskNumber} running in ThreadPool with {fixedWorkerThreads} threads. currentThreadId:{currentThreadId}");
+                    //Thread.Sleep(1000);
+                }));
+                tasks.Add(Task.Run(() =>
+                {
+                    enEvent.WaitOne();
+                    int currentThreadId = Thread.CurrentThread.ManagedThreadId;
+                    System.Diagnostics.Trace.WriteLine($"{nameof(Task)} {taskNumber} running2 in ThreadPool with {fixedWorkerThreads} threads. currentThreadId:{currentThreadId}");
+                    //Thread.Sleep(1000);
+                }));
+                //Task.Run(() =>
+                //{
+                //    int currentThreadId = Thread.CurrentThread.ManagedThreadId;
+                //    System.Diagnostics.Trace.WriteLine($"{nameof(Task)} {taskNumber} running in ThreadPool with {fixedWorkerThreads} threads. currentThreadId:{currentThreadId}");
+                //    Thread.Sleep(1000);
+                //});
+            }
+
+            enEvent.Set();
+            Task.WaitAll(tasks.ToArray());
+            enEvent.Dispose();
+
+            //// 任务数量
+            //int taskCount = 30;
+
+            //// 创建并初始化CountdownEvent实例
+            //CountdownEvent countdown = new CountdownEvent(taskCount);
+
+            //// 使用 Task.Run 运行任务 (默认将在 ThreadPool 中运行)
+            //for (int i = 1; i <= taskCount; i++)
+            //{
+            //    int taskNumber = i;
+            //    Task.Run(() =>
+            //    {
+            //        // 等待挡板
+            //        countdown.Signal();
+            //        countdown.Wait();
+
+            //        int currentThreadId = Thread.CurrentThread.ManagedThreadId;
+            //        System.Diagnostics.Trace.WriteLine($"{nameof(Task)} {taskNumber} running in ThreadPool with {fixedWorkerThreads} threads. currentThreadId:{currentThreadId}");
+
+            //        Thread.Sleep(1000);
+            //    });
+            //}
+
+            //// 确保主线程不会在完成任务前退出
+            //countdown.Wait();
+            //countdown.Dispose();
+
+            System.Diagnostics.Trace.WriteLine("...");
         }
 
         private void TestDictionary()
@@ -107,6 +229,14 @@ namespace WpfApp6
                     System.Diagnostics.Trace.WriteLine($"已接收数据速率：{bytesReceivedSpeed}");
                 }
             }
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            string sUrl = "https://stackify.com/nullreferenceexception-object-reference-not-set/";
+            string sMd5 = GetMd5(sUrl);
+            string sHash256 = GetHash256(sUrl);
+            System.Diagnostics.Trace.WriteLine($"sMd5:{sMd5}, sHash256:{sHash256}");
         }
     }
 }

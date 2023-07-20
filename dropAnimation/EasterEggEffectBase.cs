@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
@@ -35,11 +36,9 @@ namespace dropAnimation
 		//元素合集
 		private readonly Dictionary<int, DropItem1> _vDropItem = new Dictionary<int, DropItem1>();
 
-		private object _lockObj = new object();
-
 		BitmapImage bmp = null;
 
-        private readonly WriteableBitmap? _wBitmap = null;
+       // private WriteableBitmap? _wBitmap = null;
 
         private readonly System.Timers.Timer _animationTimer = null;
 
@@ -48,10 +47,6 @@ namespace dropAnimation
 			_animationTimer = new System.Timers.Timer();
 			_animationTimer.Interval = 30;
 			_animationTimer.Elapsed += DispatcherTimer_Tick;
-
-            string filePath = @"pack://application:,,,/dropAnimation;Component/res/bk.png";
-            bmp = new BitmapImage(new Uri(filePath));
-            _wBitmap = new WriteableBitmap(bmp);
         }
 
 		public void ClearData()
@@ -59,12 +54,12 @@ namespace dropAnimation
 			try
 			{
 				_animationTimer.Stop();
-				lock (_lockObj)
-				{
-					_vDropItem.Clear();
-					this.InvalidateVisual();
-				}
-			}
+                _vDropItem.Clear();
+                this.InvalidateVisual();
+
+                string filePath = @"pack://application:,,,/dropAnimation;Component/res/bk.png";
+                bmp = new BitmapImage(new Uri(filePath));
+            }
 			catch { }
 		}
 
@@ -72,36 +67,28 @@ namespace dropAnimation
 		public void InitDropItem()
 		{
 			try
-			{
-				if (_vDropItem == null)
-					return;
+            {
+                ClearData();
+                int count = (int)ActualWidth / PassageSpace;
+                int temp = 0;
+                for (int i = 0; i < count; i++)
+                {
+                    for (int j = 0; j < DropGroupCount; j++)
+                    {
+                        var item = new DropItem1
+                        {
+                            DPosX = RItemRnd.Next((int)ActualWidth),
+                            DPosY = -(RItemRnd.Next(500)),
+                            DSpeed = 2.5 + RItemRnd.Next(20) / 10.0 + ActualHeight / 700.0
+                        };
 
-				//每次都清除一次数据
-				ClearData();
-
-				lock (_lockObj)
-				{
-					int count = (int)ActualWidth / PassageSpace;
-					int temp = 0;
-					for (int i = 0; i < count; i++)
-					{
-						for (int j = 0; j < DropGroupCount; j++)
-						{
-							var item = new DropItem1
-							{
-                                DPosX = RItemRnd.Next((int)ActualWidth),
-                                DPosY = -(RItemRnd.Next(500)),
-                                DSpeed = 2.5 + RItemRnd.Next(20) / 10.0 + ActualHeight / 700.0
-                            };
-
-                            if (!_vDropItem.ContainsKey(temp))
-								_vDropItem.Add(temp, item);
-							temp++;
-						}
-					}
-					_animationTimer.Start();
-				}
-			}
+                        if (!_vDropItem.ContainsKey(temp))
+                            _vDropItem.TryAdd(temp, item);
+                        temp++;
+                    }
+                }
+                _animationTimer.Start();
+            }
 			catch { }
 		}
 
@@ -131,33 +118,30 @@ namespace dropAnimation
 		{
 			try
 			{
-                if (_vDropItem.Count <= 0)
+                Application.Current?.Dispatcher.InvokeAsync(() =>
                 {
-                    _animationTimer.Stop();
-                    return;
-                }
+                    if (_vDropItem.Count <= 0)
+                    {
+                        _animationTimer.Stop();
+                        this.InvalidateVisual();
+                        return;
+                    }
 
-				Application.Current?.Dispatcher.InvokeAsync(() =>
-				{
-					try
-					{
-						//遍历
-						foreach (var key in _vDropItem.Keys)
-						{
-							var item = _vDropItem[key];
-							item.DPosY += item.DSpeed;
-							if (item.DPosY >= ActualHeight)
-							{
-								_vDropItem.Remove(key);
-								break;
-							}
-						}
-						this.InvalidateVisual();
-					}
-					catch { }
-				});
+                    //遍历
+                    foreach (var key in _vDropItem.Keys)
+                    {
+                        var item = _vDropItem[key];
+                        item.DPosY += item.DSpeed;
+                        if (item.DPosY >= ActualHeight)
+                        {
+                            _vDropItem.Remove(key);
+                        }
+                    }
 
-			}
+                    this.InvalidateVisual();
+                });
+
+            }
 			catch { }
 		}
 
@@ -166,23 +150,16 @@ namespace dropAnimation
 			try
 			{
 				base.OnRender(dc);
-
-				if(_wBitmap == null)
-					return;
-
-				lock (_lockObj)
+                foreach (var key in _vDropItem.Keys)
                 {
-                    foreach (var key in _vDropItem.Keys)
-                    {
-                        var item = _vDropItem[key];
-                        Rect rect = new Rect(item.DPosX, item.DPosY + _wBitmap.PixelHeight, _wBitmap.PixelWidth, _wBitmap.PixelHeight);
-                        Rect tRect = new Rect(0, 0, ActualWidth, ActualHeight + _wBitmap.PixelHeight * 2);
-                        if (tRect.Contains(rect))
-                            DrawDropImg(dc, item.DPosX, item.DPosY);
-                    }
+                    var item = _vDropItem[key];
+                    Rect rect = new Rect(item.DPosX, item.DPosY + bmp.PixelHeight, bmp.PixelWidth, bmp.PixelHeight);
+                    Rect tRect = new Rect(0, 0, ActualWidth, ActualHeight + bmp.PixelHeight * 2);
+                    if (tRect.Contains(rect))
+                        DrawDropImg(dc, item.DPosX, item.DPosY);
                 }
-					
-			}
+
+            }
 			catch { }
 		}
 
@@ -190,12 +167,9 @@ namespace dropAnimation
 		{
 			try
 			{
-				if (_wBitmap != null)
-				{
-					Rect suffixRect = new Rect(dPosX, dPosY, _wBitmap.PixelWidth, _wBitmap.PixelHeight);
-					dc.DrawImage(_wBitmap, suffixRect);
-				}
-			}
+                Rect suffixRect = new Rect(dPosX, dPosY, bmp.PixelWidth, bmp.PixelHeight);
+                dc.DrawImage(bmp, suffixRect);
+            }
 			catch { }
 		}
 
