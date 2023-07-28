@@ -7,6 +7,14 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
+using System.Windows.Interop;
+using System.Windows.Media;
+using System.Management;
+using System.Net.Http;
+using System.Text.RegularExpressions;
+using System.Xml;
+using HtmlAgilityPack;
 
 namespace WpfApp6
 {
@@ -34,6 +42,181 @@ namespace WpfApp6
 
             // CheckPc();
             //TaskTest();
+
+            //for (int i = 0; i < 30; i++)
+            //{
+            //    string sUrl = $"https://ffilelogweb2.huya.com/#/feedback?uidType=0&collectStatus=0&contentKeyword=%E6%91%B8&logBeginTime=1687249415823&appId=200&isNotAutoFeedback=1&stop=0&queryDistinct=0{i}/";
+            //    var stopWatch = new Stopwatch();
+            //    stopWatch.Start();
+            //    string sMd5 = GetMd5(sUrl);
+            //    stopWatch.Stop();
+            //    System.Diagnostics.Trace.WriteLine($"sMd5:{sMd5}, 接口耗时: {stopWatch.ElapsedTicks}");
+
+            //    stopWatch.Start();
+            //    string sHash256 = GetHash256(sUrl);
+            //    stopWatch.Stop();
+            //    System.Diagnostics.Trace.WriteLine($"sHash256:{sHash256}, 接口耗时: {stopWatch.ElapsedTicks}");
+
+            //    stopWatch.Start();
+            //    string sHash1 = GetHash1(sUrl);
+            //    stopWatch.Stop();
+            //    System.Diagnostics.Trace.WriteLine($"sHash1:{sHash1}, 接口耗时: {stopWatch.ElapsedTicks}");
+            //}
+
+
+            //ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Processor");
+            //foreach (ManagementObject queryObj in searcher.Get())
+            //{
+            //    System.Diagnostics.Trace.WriteLine($"CPU 制造商: {queryObj["Manufacturer"]}");
+            //    System.Diagnostics.Trace.WriteLine($"CPU 描述: {queryObj["Name"]}");
+            //}
+
+            //ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Processor");
+            //foreach (ManagementObject obj in searcher.Get())
+            //{
+            //    string manufacturer = obj["Manufacturer"].ToString();
+            //    string serialNumber = obj["ProcessorID"].ToString();
+            //    string socketDesignation = obj["SocketDesignation"].ToString();
+            //    DateTime installDate;
+
+            //    if (obj["InstallDate"] != null)
+            //    {
+            //        installDate = ManagementDateTimeConverter.ToDateTime(obj["InstallDate"].ToString());
+            //    }
+            //    else
+            //    {
+            //        installDate = DateTime.MinValue;
+            //    }
+
+            //    System.Diagnostics.Trace.WriteLine("Manufacturer: " + manufacturer);
+            //    System.Diagnostics.Trace.WriteLine("Serial Number: " + serialNumber);
+            //    System.Diagnostics.Trace.WriteLine("Socket Designation: " + socketDesignation);
+            //    System.Diagnostics.Trace.WriteLine("Install Date: " + installDate);
+            //}
+            CpuHandler();
+        }
+
+        private async void AAA()
+        {
+            string cpuModel = "Intel Core i7-9700K"; // 提供您要查询的 CPU 型号
+            string cpuWorldSearchUrl = $"https://www.cpu-world.com/cgi-bin/Search.cgi?Search={Uri.EscapeDataString(cpuModel)}";
+
+            using HttpClient httpClient = new HttpClient();
+            string searchPageContent = await httpClient.GetStringAsync(cpuWorldSearchUrl);
+
+            HtmlDocument searchPageDocument = new HtmlDocument();
+            searchPageDocument.LoadHtml(searchPageContent);
+
+            HtmlNodeCollection searchResults = searchPageDocument.DocumentNode.SelectNodes("//table[contains(@class, 'results_table')]//a");
+            if (searchResults == null || searchResults.Count == 0)
+            {
+                Console.WriteLine("找不到匹配的结果");
+                return;
+            }
+
+            string cpuPageUrl = searchResults[0].GetAttributeValue("href", "");
+            string cpuPageContent = await httpClient.GetStringAsync(cpuPageUrl);
+
+            HtmlDocument cpuPageDocument = new HtmlDocument();
+            cpuPageDocument.LoadHtml(cpuPageContent);
+
+            HtmlNodeCollection cpuDetails = cpuPageDocument.DocumentNode.SelectNodes("//table[contains(@id, 'details')]//tr");
+            if (cpuDetails == null)
+            {
+                Console.WriteLine("找不到 CPU 详细信息");
+                return;
+            }
+
+            string productionDate = "生产日期未知";
+            foreach (HtmlNode detailRow in cpuDetails)
+            {
+                if (detailRow.SelectSingleNode("td")?.InnerText?.Trim().ToLower() == "introduction date")
+                {
+                    string dateText = detailRow.SelectSingleNode("td[2]")?.InnerText?.Trim();
+                    Match dateMatch = Regex.Match(dateText, @"\b\d{4}[,-]\s*\w{3}\b");
+                    if (dateMatch.Success)
+                    {
+                        productionDate = dateMatch.Value;
+                    }
+                    break;
+                }
+            }
+
+            Console.WriteLine($"CPU 型号: {cpuModel}");
+            Console.WriteLine($"生产日期: {productionDate}");
+        }
+
+        private async void CpuHandler()
+        {
+            string cpuModel = GetCpuInfo();
+            if (string.IsNullOrEmpty(cpuModel))
+            {
+                System.Diagnostics.Trace.WriteLine("未能获取 CPU 型号");
+                return;
+            }
+
+            string cpuWorldSearchUrl = $"https://www.cpu-world.com/cgi-bin/Search.cgi?Search={Uri.EscapeDataString(cpuModel)}";
+
+            using HttpClient httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36");
+            httpClient.Timeout = TimeSpan.FromSeconds(3000);
+            string searchPageContent = await httpClient.GetStringAsync(cpuWorldSearchUrl);
+
+            HtmlDocument searchPageDocument = new HtmlDocument();
+            searchPageDocument.LoadHtml(searchPageContent);
+
+            HtmlNodeCollection searchResults = searchPageDocument.DocumentNode.SelectNodes("//table[contains(@class, 'results_table')]//a");
+            if (searchResults == null || searchResults.Count == 0)
+            {
+                System.Diagnostics.Trace.WriteLine("找不到匹配的结果");
+                return;
+            }
+
+            string cpuPageUrl = searchResults[0].GetAttributeValue("href", "");
+            string cpuPageContent = await httpClient.GetStringAsync(cpuPageUrl);
+
+            HtmlDocument cpuPageDocument = new HtmlDocument();
+            cpuPageDocument.LoadHtml(cpuPageContent);
+
+            HtmlNodeCollection cpuDetails = cpuPageDocument.DocumentNode.SelectNodes("//table[contains(@id, 'details')]//tr");
+            if (cpuDetails == null)
+            {
+                System.Diagnostics.Trace.WriteLine("找不到 CPU 详细信息");
+                return;
+            }
+
+            string productionDate = "生产日期未知";
+            foreach (HtmlNode detailRow in cpuDetails)
+            {
+                if (detailRow.SelectSingleNode("td")?.InnerText?.Trim().ToLower() == "introduction date")
+                {
+                    string dateText = detailRow.SelectSingleNode("td[2]")?.InnerText?.Trim();
+                    Match dateMatch = Regex.Match(dateText, @"\b\d{4}[,-]\s*\w{3}\b");
+                    if (dateMatch.Success)
+                    {
+                        productionDate = dateMatch.Value;
+                    }
+                    break;
+                }
+            }
+
+            System.Diagnostics.Trace.WriteLine($"CPU 型号: {cpuModel}");
+            System.Diagnostics.Trace.WriteLine($"生产日期: {productionDate}");
+        }
+
+        private string GetCpuInfo()
+        {
+            string cpuModel = "";
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Processor");
+
+            foreach (var o in searcher.Get())
+            {
+                var obj = (ManagementObject)o;
+                cpuModel = obj["Name"]?.ToString()?.Trim();
+                break; // 获取第一个处理器（CPU）产生的模型
+            }
+
+            return cpuModel;
         }
 
         /// <summary>
@@ -74,6 +257,21 @@ namespace WpfApp6
                 hashBuilder.Append(t.ToString("x2"));
 
             return hashBuilder.ToString();
+        }
+
+        private string GetHash1(string sUrl)
+        {
+            if (string.IsNullOrWhiteSpace(sUrl))
+                return "";
+
+            using var sha1 = new SHA1Managed();
+            byte[] inputBytes = Encoding.UTF8.GetBytes(sUrl);
+            byte[] hashBytes = sha1.ComputeHash(inputBytes);
+            var sb = new StringBuilder();
+            foreach (byte b in hashBytes)
+                sb.Append(b.ToString("x2"));
+
+            return sb.ToString();
         }
 
         /// <summary>
@@ -234,9 +432,32 @@ namespace WpfApp6
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             string sUrl = "https://stackify.com/nullreferenceexception-object-reference-not-set/";
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
             string sMd5 = GetMd5(sUrl);
+            stopWatch.Stop();
             string sHash256 = GetHash256(sUrl);
-            System.Diagnostics.Trace.WriteLine($"sMd5:{sMd5}, sHash256:{sHash256}");
+            System.Diagnostics.Trace.WriteLine($"sMd5:{sMd5}, 接口耗时: {stopWatch.ElapsedMilliseconds} 毫秒");
+        }
+
+        private void ButtonBase1_OnClick(object sender, RoutedEventArgs e)
+        {
+            string sUrl = "https://stackify.com/nullreferenceexception-object-reference-not-set/";
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            string sHash256 = GetHash256(sUrl);
+            stopWatch.Stop();
+            System.Diagnostics.Trace.WriteLine($"sHash256:{sHash256}, 接口耗时: {stopWatch.ElapsedMilliseconds} 毫秒");
+        }
+
+        private void ButtonBase2_OnClick(object sender, RoutedEventArgs e)
+        {
+            string sUrl = "https://stackify.com/nullreferenceexception-object-reference-not-set/";
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            string sHash1 = GetHash1(sUrl);
+            stopWatch.Stop();
+            System.Diagnostics.Trace.WriteLine($"sHash1:{sHash1}, 接口耗时: {stopWatch.ElapsedMilliseconds} 毫秒");
         }
     }
 }
