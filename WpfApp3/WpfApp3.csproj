@@ -8,10 +8,42 @@
 
   <ItemGroup>
     <None Remove="Resources\1.jpg" />
+    <None Remove="Resources\5.png" />
+    <None Remove="Resources\awardTitle.png" />
+    <None Remove="Resources\bg.png" />
+    <None Remove="Resources\box.png" />
+    <None Remove="Resources\boxFinish.png" />
+    <None Remove="Resources\boxItem.png" />
+    <None Remove="Resources\boxNormal.png" />
+    <None Remove="Resources\btnClose.png" />
+    <None Remove="Resources\detailsBox.png" />
+    <None Remove="Resources\fans.png" />
+    <None Remove="Resources\ruler.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\5.png" />
+    <Resource Include="Resources\boxFinish.png" />
+    <Resource Include="Resources\boxNormal.png" />
+    <Resource Include="Resources\detailsBox.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\awardTitle.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Resources\1.jpg" />
+    <Resource Include="Resources\bg.png" />
+    <Resource Include="Resources\box.png" />
+    <Resource Include="Resources\boxItem.png" />
+    <Resource Include="Resources\btnClose.png" />
+    <Resource Include="Resources\fans.png" />
+    <Resource Include="Resources\ruler.png" />
   </ItemGroup>
 
 </Project>

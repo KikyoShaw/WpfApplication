@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="WpfApp3.NewBoxAward"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp3"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <BitmapImage x:Key="ResAwardTitle" UriSource="/WpfApp3;Component/Resources/awardTitle.png"/>
+    </UserControl.Resources>
+
+    <Border Width="570" Height="572" Background="#80000000" CornerRadius="7">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="1" CornerRadius="12" Width="340">
+                <!--多种渐变混合颜色-->
+                <Grid>
+                    <Rectangle RadiusX ="12" RadiusY="12">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#FFD6D5" Offset="0" />
+                                <GradientStop Offset="0.3" Color="#FFFFFF"/>
+                                <GradientStop Color="#FFFFFF" Offset="1" />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle RadiusX ="12" RadiusY="12">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#FFDBDB" Offset="0.0409" />
+                                <GradientStop Offset="0.3" Color="#FFFFFF"/>
+                                <GradientStop Color="#FFFFFF" Offset="1" />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle RadiusX ="12" RadiusY="12">
+                        <Rectangle.Fill>
+                            <RadialGradientBrush Center="0,0.0769" GradientOrigin="0,0.0769" RadiusX="1" RadiusY="0.4">
+                                <GradientStop Color="#FFF7B2" Offset="0" />
+                                <GradientStop Color="#00FFFFFF" Offset="1" />
+                            </RadialGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Grid Margin="0 18 0 20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel>
+                            <Image Height="36" Width="154" Source="{StaticResource ResAwardTitle}"/>
+                            <StackPanel Margin="0 20 0 0 " Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Grid Height="1" Width="20">
+                                    <Grid.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="#00924124" Offset="0" />
+                                            <GradientStop Color="#FF924124" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Grid.Background>
+                                </Grid>
+                                <TextBlock Margin="12 0">
+                                <Run Text="成功打开" Foreground="#8C4100"/>
+                                <Run Text="2" Foreground="#FF6380"/>
+                                <Run Text="个白炽宝箱" Foreground="#8C4100"/>
+                                </TextBlock>
+                                <Grid Height="1" Width="20">
+                                    <Grid.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="#00924124" Offset="1" />
+                                            <GradientStop Color="#FF924124" Offset="0" />
+                                        </LinearGradientBrush>
+                                    </Grid.Background>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                        <Button Grid.Row="2" Margin="0 16 0 0" Height="44" Width="240" Cursor="Hand" Click="KnowBtn_Clicked">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="20">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="#FFFA3B" Offset="0" />
+                                                <GradientStop Color="#FFB600" Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <TextBlock Text="我知道了" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#222222" FontSize="14"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+
+</UserControl>

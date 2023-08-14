@@ -7,8 +7,96 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
-    <Grid>
-        <local:UserControl6/>
-        
+    <Window.Resources>
+        <DrawingImage x:Key="_5DrawingImage">
+            <DrawingImage.Drawing>
+                <DrawingGroup ClipGeometry="M0,0 V18 H13 V0 H0 Z">
+                    <DrawingGroup Opacity="1">
+                        <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M13,18z M0,0z M3.3623,14.7266L3.3623,12.8193C4.09603,13.266 4.8776,13.4893 5.70703,13.4893 6.33138,13.4893 6.81901,13.3366 7.16992,13.0312 7.52539,12.7214 7.70312,12.3044 7.70312,11.7803 7.70312,10.682 6.95117,10.1328 5.44727,10.1328 4.89128,10.1328 4.25098,10.1738 3.52637,10.2559L3.92285,4.41113 9.52832,4.41113 9.52832,6.22949 5.70703,6.22949 5.55664,8.45801C5.9349,8.42611 6.28353,8.41016 6.60254,8.41016 7.63704,8.41016 8.4528,8.69271 9.0498,9.25781 9.65137,9.82292 9.95215,10.5885 9.95215,11.5547 9.95215,12.6211 9.58984,13.4938 8.86523,14.1729 8.14062,14.8473 7.15625,15.1846 5.91211,15.1846 4.90495,15.1846 4.05501,15.0319 3.3623,14.7266z" />
+                        <GeometryDrawing Brush="#FF1B2C59" Geometry="F0 M13,18z M0,0z M2.95896,15.6416C2.59633,15.4818,2.3623,15.1229,2.3623,14.7266L2.3623,12.8193C2.3623,12.4579 2.55731,12.1246 2.87238,11.9476 3.18745,11.7705 3.57353,11.7772 3.88225,11.9651 4.46516,12.32 5.06774,12.4893 5.70703,12.4893 6.17306,12.4893 6.39853,12.3767 6.51318,12.2771 6.62482,12.1797 6.70312,12.0511 6.70312,11.7803 6.70312,11.4853 6.61914,11.4032 6.54939,11.3522 6.42113,11.2586 6.10713,11.1328 5.44727,11.1328 4.93833,11.1328 4.33689,11.1705 3.63886,11.2495 3.34411,11.2829 3.04976,11.1837 2.83535,10.9787 2.62093,10.7737 2.50858,10.4841 2.52866,10.1882L2.92514,4.34345C2.96075,3.81864,3.39684,3.41113,3.92285,3.41113L9.52832,3.41113C10.0806,3.41113,10.5283,3.85885,10.5283,4.41113L10.5283,6.22949C10.5283,6.78178,10.0806,7.22949,9.52832,7.22949L6.64182,7.22949 6.62963,7.41021C7.83907,7.41518 8.9147,7.75374 9.73586,8.53026 10.5722,9.3167 10.9521,10.3644 10.9521,11.5547 10.9521,12.8747 10.4914,14.0194 9.54902,14.9025L9.54657,14.9048C8.59267,15.7927 7.34137,16.1846 5.91211,16.1846 4.80962,16.1846 3.81334,16.0182 2.95896,15.6416z M9.0498,9.25781C8.4528,8.69271 7.63704,8.41016 6.60254,8.41016 6.58912,8.41016 6.57566,8.41018 6.56214,8.41024 6.25416,8.41153 5.91899,8.42745 5.55664,8.45801L5.70703,6.22949 9.52832,6.22949 9.52832,4.41113 3.92285,4.41113 3.52637,10.2559C3.88295,10.2155 4.21911,10.1851 4.53486,10.1646 4.86074,10.1434 5.16488,10.1328 5.44727,10.1328 6.95117,10.1328 7.70312,10.682 7.70312,11.7803 7.70312,12.3044 7.52539,12.7214 7.16992,13.0312 6.81901,13.3366 6.33138,13.4893 5.70703,13.4893 5.24387,13.4893 4.79563,13.4196 4.3623,13.2804 4.01964,13.1702 3.68631,13.0166 3.3623,12.8193L3.3623,14.7266C4.05501,15.0319 4.90495,15.1846 5.91211,15.1846 7.15625,15.1846 8.14062,14.8473 8.86523,14.1729 9.58984,13.4938 9.95215,12.6211 9.95215,11.5547 9.95215,10.5885 9.65137,9.82292 9.0498,9.25781z" />
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+    </Window.Resources>
+
+    <Grid Background="White">
+        <!--<Grid.Resources>
+            <Style x:Key="StrokeTextBlockStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="35" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Foreground" Value="Black" />
+            </Style>
+        </Grid.Resources>
+        <Grid>
+            <TextBlock Style="{StaticResource StrokeTextBlockStyle}" Text="描边文字" Margin="-1,-1,0,0" />
+            <TextBlock Style="{StaticResource StrokeTextBlockStyle}" Text="描边文字" Margin="1,1,0,0" />
+            <TextBlock Style="{StaticResource StrokeTextBlockStyle}" Text="描边文字" Margin="-1,1,0,0" />
+            <TextBlock Style="{StaticResource StrokeTextBlockStyle}" Text="描边文字" Margin="1,-1,0,0" />
+            <TextBlock Style="{StaticResource StrokeTextBlockStyle}" Text="描边文字" Foreground="White" />
+        </Grid>-->
+
+
+        <!--<local:OutLineText x:Name="PathEdge"
+                        Fill="White"
+                        Stroke="#1B2C59"
+                        StrokeThickness="1"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="x6"/>-->
+
+
+        <!--<TextBlock Text="x6"
+                   FontSize="14"
+                   FontWeight="Bold"
+                   Foreground="White">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="#1B2C59"
+                                  Direction="315"
+                                  ShadowDepth="2"
+                                  Opacity="1"
+                                  BlurRadius="0"/>
+            </TextBlock.Effect>
+        </TextBlock>-->
+
+        <!--<TextBlock
+            Text="x6"
+            Foreground="#1B2C59">
+            <TextBlock.Effect>
+                <BlurEffect
+                    Radius="8.0"
+                    KernelType="Box"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBlock FontSize="14"
+                   Text="x6"
+                   Foreground="White"/>-->
+
+        <!--<TextBlock Text="x6" FontSize="17" FontWeight="Black" Foreground="#1B2C59">
+            <TextBlock.Effect>
+                <BlurEffect Radius="1"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBlock Text="x6" Foreground="White" FontSize="14" FontWeight="Bold"/>-->
+
+        <!--<local:OutlinedText x:Name="TextContent" Fill="#ffffffff" FontSize="14" UseLayoutRounding="True"   
+                            Bold="True" Stroke="#1B2C59" StrokeThickness="1" Text="x5" Margin="86,11,-66,-11" 
+                            Height="Auto" Width="Auto" />-->
+
+        <Grid Height="18" VerticalAlignment="Top">
+            <Image x:Name="ImageSvg"/>
+        </Grid>
+
+        <!--toast提示窗口-->
+        <StackPanel x:Name="StackPanel1" VerticalAlignment="Bottom" HorizontalAlignment="Center" MaxWidth="500" 
+                    Visibility="{Binding ToastShow, Converter={x:Static local:BoolToVisibility.Instance}}">
+            <Border Width="Auto" Height="Auto" Background="#99000000" CornerRadius="4">
+                <TextBlock x:Name="TextBlock1" Text="{Binding ToastText}" Margin="12" FontSize="14" Foreground="White" TextWrapping="Wrap"/>
+            </Border>
+        </StackPanel>
+
+        <!--<local:UserControl6/>-->
+        <Button Height="45" Width="80" Content="打开" Click="ButtonBase_OnClick" IsEnabled="False"/>
+
     </Grid>
 </Window>

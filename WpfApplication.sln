@@ -43,7 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp6", "WpfApp6\WpfApp6.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSystemWatcherTest", "FileSystemWatcherTest\FileSystemWatcherTest.csproj", "{767D729A-E464-464E-A2CF-1023834088F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppParse", "WpfAppParse\WpfAppParse.csproj", "{A4616C56-7FA8-4F8C-BB12-5ADFB372955E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfAppParse", "WpfAppParse\WpfAppParse.csproj", "{A4616C56-7FA8-4F8C-BB12-5ADFB372955E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpfttf", "wpfttf\wpfttf.csproj", "{CC4A7D8F-320A-4480-A566-FE6B6789450C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -221,6 +223,14 @@ Global
 		{A4616C56-7FA8-4F8C-BB12-5ADFB372955E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A4616C56-7FA8-4F8C-BB12-5ADFB372955E}.Release|x86.ActiveCfg = Release|Any CPU
 		{A4616C56-7FA8-4F8C-BB12-5ADFB372955E}.Release|x86.Build.0 = Release|Any CPU
+		{CC4A7D8F-320A-4480-A566-FE6B6789450C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC4A7D8F-320A-4480-A566-FE6B6789450C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC4A7D8F-320A-4480-A566-FE6B6789450C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC4A7D8F-320A-4480-A566-FE6B6789450C}.Debug|x86.Build.0 = Debug|Any CPU
+		{CC4A7D8F-320A-4480-A566-FE6B6789450C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC4A7D8F-320A-4480-A566-FE6B6789450C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC4A7D8F-320A-4480-A566-FE6B6789450C}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC4A7D8F-320A-4480-A566-FE6B6789450C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
