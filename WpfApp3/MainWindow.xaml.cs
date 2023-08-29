@@ -31,6 +31,19 @@ namespace WpfApp3
 
     public class LiveBoxAward
     {
+        int _iSourceType = 0;
+        public int iSourceType
+        {
+            get
+            {
+                return _iSourceType;
+            }
+            set
+            {
+                _iSourceType = value;
+            }
+        }
+
         int _iType = 0;
         public int iType
         {
@@ -149,6 +162,18 @@ namespace WpfApp3
             //images.Add(x9);
             var image = NumSvgDrawingTools.Instance.MergeDrawingImages(-4, images);
             ImageSvg.Source = image;
+
+            var bytes = GetA() ?? GetB();
+        }
+
+        private byte[] GetA()
+        {
+            return null;
+        }
+
+        private byte[] GetB()
+        {
+            return null;
         }
 
         private void Test()
@@ -160,15 +185,16 @@ namespace WpfApp3
                 {
                     var item = new LiveBoxAward();
                     item.iType = i;
+                    item.iSourceType = 2 * i;
                     item.iCount = i * 2;
-                    item.sName = "测试";
+                    item.sName = $"测试{i}";
                     ttt.Add(item);
                 }
                 _allNewBoxAwards.Add(ttt);
             }
 
             List<LiveBoxAward> flatList = _allNewBoxAwards.SelectMany(x => x).ToList();
-            var groups = flatList.GroupBy(x => x.iType);
+            var groups = flatList.GroupBy(x => new { x.iSourceType, x.iType });
 
             List<LiveBoxAward> mergedList = new List<LiveBoxAward>();
 
@@ -176,7 +202,8 @@ namespace WpfApp3
             {
                 mergedList.Add(new LiveBoxAward
                 {
-                    iType = group.Key,
+                    iType = group.Key.iType,
+                    iSourceType = group.Key.iSourceType,
                     iCount = group.Sum(x => x.iCount),
                     sName = group.First().sName,
                     sIcon = group.First().sIcon

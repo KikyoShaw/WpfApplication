@@ -7,7 +7,96 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
+    <Window.Resources>
+        <LinearGradientBrush x:Key="ControlElevationBorderBrush" MappingMode="Absolute" StartPoint="0,0" EndPoint="0,3">
+            <LinearGradientBrush.RelativeTransform>
+                <ScaleTransform CenterY="0.0" ScaleY="-1" />
+            </LinearGradientBrush.RelativeTransform>
+            <LinearGradientBrush.GradientStops>
+                <GradientStop Offset="0.33" Color="#29000000" />
+                <GradientStop Offset="1.0" Color="#0F000000" />
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <Style TargetType="{x:Type ProgressBar}" x:Key="ProgressBarStyle">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="#80b9ee" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#B3FFFFFF" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlElevationBorderBrush}" />
+            <Setter Property="Height" Value="12" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid Name="TemplateRoot" SnapsToDevicePixels="True">
+                            <Border
+                            Margin="1,1,1,1"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="10" />
+                            <Rectangle Name="PART_Track" Margin="1,1,1,1" />
+                            <Border
+                            Name="PART_Indicator"
+                            Margin="1,1,1,1"
+                            HorizontalAlignment="Left"
+                            Background="{TemplateBinding Foreground}"
+                            CornerRadius="10" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsIndeterminate" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ProgressBar}">
+                                <Grid Name="TemplateRoot">
+                                    <Border
+                                    Margin="1,1,1,1"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="10" />
+                                    <Rectangle Name="PART_Track" Margin="1,1,1,1" />
+                                    <Decorator
+                                    Name="PART_Indicator"
+                                    Margin="1,1,1,1"
+                                    HorizontalAlignment="Left">
+                                        <Grid Name="Animation" ClipToBounds="True">
+                                            <Border
+                                            Name="PART_GlowRect"
+                                            Width="200"
+                                            Margin="0,0,0,0"
+                                            HorizontalAlignment="Left"
+                                            Background="{TemplateBinding Foreground}"
+                                            CornerRadius="10" />
+                                        </Grid>
+                                    </Decorator>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Grid x:Name="Xgrid">
+
+        <!--<Slider Height="20"/>-->
+
+        <ProgressBar Height="20" Margin="10" Value="20" Style="{StaticResource ProgressBarStyle}"/>
+
         <!--<local:UserControl1/>-->
         <!--<local:UserControl2/>-->
         <!--<Grid>
@@ -17,7 +106,7 @@
             <TextBlock Text=" 文本" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamily}}" FontSize="{DynamicResource {x:Static SystemFonts.CaptionFontSize}}" FontWeight="{DynamicResource {x:Static SystemFonts.CaptionFontWeight}}"></TextBlock>
         </Grid>-->
 
-        <Polygon Stroke="Black" StrokeThickness="2" Fill="LightBlue"
+        <!--<Polygon Stroke="Black" StrokeThickness="2" Fill="LightBlue"
                  HorizontalAlignment="Center" VerticalAlignment="Center">
             <Polygon.Points>
                 <PointCollection>
@@ -31,7 +120,7 @@
                     <Point X="50" Y="100" />
                 </PointCollection>
             </Polygon.Points>
-        </Polygon>
+        </Polygon>-->
 
     </Grid>
 

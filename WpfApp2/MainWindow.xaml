@@ -10,7 +10,7 @@
         PreviewKeyUp="MainWindow_OnPreviewKeyUp">
 
     <Grid Background="#2E3138">
-        <!--<Grid Margin="50">
+        <Grid Margin="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="24"/>
@@ -18,9 +18,9 @@
             <local:UserControl1/>
             <Button x:Name="GiftBtn" Grid.Column="1" Width="24" Height="44"
                     Cursor="Hand" Click="GiftBtn_OnClick"/>
-            --><!--<Image x:Name="GiftBtn" Grid.Column="1" Width="24" Height="44" Source="/WpfApp2;Component/Resources/button.png" 
-                   Cursor="Hand" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>--><!--
-        </Grid>-->
+            <!--<Image x:Name="GiftBtn" Grid.Column="1" Width="24" Height="44" Source="/WpfApp2;Component/Resources/button.png" 
+                   Cursor="Hand" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>-->
+        </Grid>
 
         <!--<Polygon  
             Points="300,200 400,125 400,275"  
@@ -53,7 +53,7 @@
             </StackPanel>
         </Border>-->
 
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+        <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
             <TextBlock Text="粉丝团任务" Foreground="White"/>
             <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="4 2 0 0">
                 <Line X1="0" Y1="0" X2="4" Y2="4" Stroke="White" StrokeThickness="1"/>
@@ -67,7 +67,7 @@
                 </Border>
             </Grid>
 
-        </StackPanel>
+        </StackPanel>-->
 
         <!--<Grid VerticalAlignment="Center">
             <Line X1="10" Y1="10" X2="16" Y2="16" Stroke="Black" StrokeThickness="1"/>

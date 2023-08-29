@@ -17,7 +17,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Image Height="44" Width="44" Source="{Binding sIconUrl}" Stretch="Uniform" Margin="-20 0 10 0"/>
+                        <Image Height="44" Width="44" Source="{Binding sIconUrl}" Stretch="Uniform" Margin="6 0"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
