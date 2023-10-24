@@ -14,7 +14,10 @@ namespace TestApp
 		private static readonly Lazy<FansVM> lazy = new Lazy<FansVM>(() => new FansVM());
 		public static FansVM Instance => lazy.Value;
 
-		private BitmapImage _bAnimation = null;
+        // 未登录时，码率只可选择小于此值
+        public static int iMaxRateWithoutLogin = 4000;
+
+        private BitmapImage _bAnimation = null;
 		public BitmapImage bAnimation
 		{
 			get { return _bAnimation; }

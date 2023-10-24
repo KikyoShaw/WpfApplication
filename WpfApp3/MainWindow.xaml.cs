@@ -1,24 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Timers;
+using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
-using System.Xml;
+using Newtonsoft.Json.Linq;
 
 namespace WpfApp3
 {
@@ -290,6 +277,8 @@ namespace WpfApp3
             //    _newTreasureBoxWnd.ShowDialog();
             //}
 
+            test();
+
             //if (wnd == null)
             //{
             //    wnd = new Window2();
@@ -297,11 +286,11 @@ namespace WpfApp3
             //}
             //wnd.Show();
 
-            A a = new A();
-            a.myDictionary.Add("Key1", "Value1");
-            a.myDictionary.Add("Key2", "Value2");
-            a.myDictionary.Add("Key3", "Value3");
-            System.Diagnostics.Trace.WriteLine($"{JsonSerializer.Serialize(a)}");
+            //A a = new A();
+            //a.myDictionary.Add("Key1", "Value1");
+            //a.myDictionary.Add("Key2", "Value2");
+            //a.myDictionary.Add("Key3", "Value3");
+            //System.Diagnostics.Trace.WriteLine($"{JsonSerializer.Serialize(a)}");
             //NewTreasureBoxIVm.Instance.ToastShow = true;
             //NewTreasureBoxIVm.Instance.ToastText = "1111";
 
@@ -320,6 +309,127 @@ namespace WpfApp3
             //    _toastTimer.Elapsed += OnMsgChatElapsed;
             //    _toastTimer.Start();
             //}
+        }
+
+        private Mutex _mutexUpdateNotice = null;
+
+        private Semaphore _semaphore = null;
+
+        private void test()
+        {
+            //var mutexUpdateNotice = new Mutex(true, "HuYaPc-Update-Notice-{09C278EE-7933-4919-986E-7F1CDE84C489}", out var bFirstCreate);
+            //if (bFirstCreate)
+            //{
+            //    int i = 0;
+            //    i++;
+            //    _mutexUpdateNotice = mutexUpdateNotice;
+
+            //    Debug.WriteLine("1111111");
+            //}
+            //else
+            //{
+            //    mutexUpdateNotice?.Dispose();
+            //}
+            //
+
+            //_semaphore = new Semaphore(1, 1, "HuYaPc-Update-Notice-{666666EE-7933-4919-986E-7F1CDE84C489}", out var bFirstCreate);
+            //if (bFirstCreate)
+            //{
+            //    int i = 0;
+            //    i++;
+            //}
+        }
+
+        private Dictionary<string, int> UpdateCountDic = new Dictionary<string, int>();
+
+        private void ButtonBase1_OnClick(object sender, RoutedEventArgs e)
+        {
+            string json = "{\"UpdateCount\":4,\"UpdateInterval\":24,\"LastUpdateDateTime\":1695371567,\"UpdateCountDic\":null}";
+
+            var jsObj = (JObject)Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+
+            if (jsObj == null)
+            {
+                return;
+            }
+
+            var playUri = jsObj.GetValue("playUrl");
+
+
+            //UpdateCountDic.Add("5.58.1.0", 1);
+            //UpdateCountDic.Add("5.57.1.0", 1);
+            //UpdateCountDic.Add("5.59.1.0", 1);
+            //UpdateCountDic.Add("5.57.2.0", 1);
+            //UpdateCountDic.Add("5.60.1.0", 1);
+            //UpdateCountDic.Add("5.55.1.0", 1);
+            //UpdateCountDic.Add("5.53.1.0", 1);
+            //UpdateCountDic.Add("5.59.3.0", 1);
+
+            ////UpdateCountDic.OrderBy(pair => pair.Key, CompareVersion);
+            //UpdateCountDic = UpdateCountDic.OrderBy(pair => pair.Key, new VersionComparer()).Skip(UpdateCountDic.Count - 5).ToDictionary(pair => pair.Key, pair => pair.Value);
+
+            //bool t = false;
+            //if (_mutexUpdateNotice != null)
+            //{
+            //    t = _mutexUpdateNotice.WaitOne(0);
+            //}
+
+            //if (t)
+            //{
+            //_mutexUpdateNotice?.ReleaseMutex();
+            // _mutexUpdateNotice?.Dispose();
+            //}
+
+            //try
+            //{
+            //    _mutexUpdateNotice?.Dispose();
+            //}
+            //catch
+            //{
+
+            //}
+
+            //_semaphore?.Release(1);
+        }
+
+        public class VersionComparer : IComparer<string>
+        {
+            public int CompareVersion(string version1, string version2)
+            {
+                try
+                {
+                    var isVersion1Empty = string.IsNullOrEmpty(version1);
+                    var isVersion2Empty = string.IsNullOrEmpty(version2);
+
+                    if (isVersion1Empty || isVersion2Empty)
+                    {
+                        return (isVersion1Empty ? -1 : 1) - (isVersion2Empty ? -1 : 1);
+                    }
+
+                    var version1List = version1.Split('.');
+                    var version2List = version2.Split('.');
+
+                    var commonVersionCount = Math.Min(version1List.Length, version2List.Length);
+
+                    for (var i = 0; i < commonVersionCount; i++)
+                    {
+                        int.TryParse(version1List[i], out var iVerNum1);
+                        int.TryParse(version2List[i], out var iVerNum2);
+                        if (iVerNum1 != iVerNum2)
+                            return iVerNum1 > iVerNum2 ? 1 : -1;
+                    }
+
+                    return version1List.Length - version2List.Length;
+                }
+                catch { }
+
+                return 0;
+            }
+
+            public int Compare(string x, string y)
+            {
+                return CompareVersion(x, y);
+            }
         }
 
         //private void OnMsgChatElapsed(object sender, ElapsedEventArgs e)

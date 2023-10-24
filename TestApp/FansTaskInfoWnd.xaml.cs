@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -56,7 +57,15 @@ namespace TestApp
 		{
 			try
 			{
-				POINT mousestart = new POINT();
+                Thread workerThread = new Thread(() =>
+                {
+                    // 执行一些耗时操作
+                    FansVM.iMaxRateWithoutLogin = 4001;
+                });
+                workerThread.Start();
+
+
+                POINT mousestart = new POINT();
 				GetCursorPos(out mousestart);
 
 				Point p2 = Mouse.GetPosition(this as FrameworkElement);

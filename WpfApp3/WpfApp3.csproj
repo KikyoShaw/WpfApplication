@@ -19,10 +19,19 @@
     <None Remove="Resources\detailsBox.png" />
     <None Remove="Resources\fans.png" />
     <None Remove="Resources\ruler.png" />
+    <None Remove="Resources\style\arrow.png" />
+    <None Remove="Resources\style\left.png" />
+    <None Remove="Resources\style\line.png" />
+    <None Remove="Resources\style\right.png" />
+    <None Remove="Resources\style\tips_arrow_dark.png" />
+    <None Remove="Resources\style\tips_arrow_light.png" />
+    <None Remove="Resources\style\tips_corner_left.png" />
+    <None Remove="Resources\style\tips_corner_right.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +53,14 @@
     <Resource Include="Resources\btnClose.png" />
     <Resource Include="Resources\fans.png" />
     <Resource Include="Resources\ruler.png" />
+    <Resource Include="Resources\style\arrow.png" />
+    <Resource Include="Resources\style\left.png" />
+    <Resource Include="Resources\style\line.png" />
+    <Resource Include="Resources\style\right.png" />
+    <Resource Include="Resources\style\tips_arrow_dark.png" />
+    <Resource Include="Resources\style\tips_arrow_light.png" />
+    <Resource Include="Resources\style\tips_corner_left.png" />
+    <Resource Include="Resources\style\tips_corner_right.png" />
   </ItemGroup>
 
 </Project>

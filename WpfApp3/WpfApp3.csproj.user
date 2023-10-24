@@ -40,6 +40,9 @@
     <Compile Update="UserControl6.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControl7.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Window1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -82,6 +85,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControl6.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControl7.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Window1.xaml">

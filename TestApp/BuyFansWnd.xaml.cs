@@ -27,6 +27,7 @@ namespace TestApp
 			vm = FansVM.Instance;
 			this.DataContext = vm;
 
+
 			if(vm != null)
 			{
 				if(vm.showAnimationTimer != null)
