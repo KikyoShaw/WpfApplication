@@ -45,14 +45,26 @@ namespace wpfctrl
         {
             try
             {
-                Thread thread = new Thread(ModifyUI);
-                thread.Start();
+                //Thread thread = new Thread(ModifyUI);
+                //thread.Start();
+                MainVm.Instance.test1();
+
             }
             catch /*(Exception exception)*/
             {
                 //Console.WriteLine(exception);
                 //throw;
             }
+        }
+
+        private void ButtonBase_OnClick1(object sender, RoutedEventArgs e)
+        {
+            MainVm.Instance.test2();
+        }
+
+        private void ButtonBase_OnClick2(object sender, RoutedEventArgs e)
+        {
+            MainVm.Instance.test3();
         }
     }
 }

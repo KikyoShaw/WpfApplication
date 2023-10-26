@@ -40,11 +40,39 @@ namespace wpfctrl
             }
         }
 
-        private ObservableCollection<TextItem> _itemsInfo = new ObservableCollection<TextItem>();
-        public ObservableCollection<TextItem> ItemsInfo
+        private List<TextItem> _itemsInfo = new List<TextItem>();
+        public List<TextItem> ItemsInfo
         {
             get => _itemsInfo;
             set => Set("ItemsInfo", ref _itemsInfo, value);
+        }
+
+        public void test1()
+        {
+            var info = new TextItem();
+            info.Text1 = $"机器人N号";
+            info.Text2 = $"序列号N号";
+            ItemsInfo.Add(info);
+        }
+
+        public void test2()
+        {
+            var temp = new List<TextItem>();
+            for (int i = 0; i < 5; i++)
+            {
+                var info = new TextItem();
+                info.Text1 = $"机器人{i}号";
+                info.Text2 = $"序列号{i}号";
+                temp.Add(info);
+            }
+            ItemsInfo = temp;
+        }
+
+        public void test3()
+        {
+            var item = ItemsInfo[0];
+            item.Text1 = "BBBBBB";
+            item.Text2 = "AAAAAA";
         }
 
         public void InsertItemInfo()

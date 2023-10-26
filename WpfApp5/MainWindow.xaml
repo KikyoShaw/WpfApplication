@@ -95,10 +95,10 @@
 
         <!--<Slider Height="20"/>-->
 
-        <ProgressBar Height="20" Margin="10" Value="20" Style="{StaticResource ProgressBarStyle}"/>
+        <!--<ProgressBar Height="20" Margin="10" Value="20" Style="{StaticResource ProgressBarStyle}"/>-->
 
         <!--<local:UserControl1/>-->
-        <!--<local:UserControl2/>-->
+        <local:UserControl3/>
         <!--<Grid>
             <Rectangle Fill="{DynamicResource {x:Static SystemColors.DesktopBrushKey}}" HorizontalAlignment="Left" Height="76" Margin="85,70,0,0" Stroke="Black" VerticalAlignment="Top" Width="243">
 
