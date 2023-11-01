@@ -62,7 +62,7 @@ namespace WpfApp5
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var wnd = new NotificationWindow();
+            var wnd = new NotificationWindow3();
             wnd.Closed += (s, e) => { wnd = null; };
             wnd.Show();
         }

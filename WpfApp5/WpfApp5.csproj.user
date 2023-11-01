@@ -10,6 +10,12 @@
     <Compile Update="NotificationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="NotificationWindow2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NotificationWindow3.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControl1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,6 +31,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="NotificationWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NotificationWindow2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NotificationWindow3.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControl1.xaml">
