@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
 namespace WpfApp5
@@ -59,5 +60,11 @@ namespace WpfApp5
             return (int)registryValueObject <= 0;
         }
 
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            var wnd = new NotificationWindow();
+            wnd.Closed += (s, e) => { wnd = null; };
+            wnd.Show();
+        }
     }
 }

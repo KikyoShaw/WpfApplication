@@ -47,7 +47,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfAppParse", "WpfAppParse\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wpfttf", "wpfttf\wpfttf.csproj", "{CC4A7D8F-320A-4480-A566-FE6B6789450C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{2CC6AEF9-6117-42D0-A7A4-716A5C3B1A4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{2CC6AEF9-6117-42D0-A7A4-716A5C3B1A4F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfWin11Notify", "WpfWin11Notify\WpfWin11Notify.csproj", "{53B3F51C-F12F-4F0A-A54C-ECB90E91494F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationDemoWPF", "NotificationDemoWPF\NotificationDemoWPF.csproj", "{DB7FDBD3-2A0C-46A9-A2EE-BE294729BA43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -241,6 +245,22 @@ Global
 		{2CC6AEF9-6117-42D0-A7A4-716A5C3B1A4F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2CC6AEF9-6117-42D0-A7A4-716A5C3B1A4F}.Release|x86.ActiveCfg = Release|Any CPU
 		{2CC6AEF9-6117-42D0-A7A4-716A5C3B1A4F}.Release|x86.Build.0 = Release|Any CPU
+		{53B3F51C-F12F-4F0A-A54C-ECB90E91494F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53B3F51C-F12F-4F0A-A54C-ECB90E91494F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53B3F51C-F12F-4F0A-A54C-ECB90E91494F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{53B3F51C-F12F-4F0A-A54C-ECB90E91494F}.Debug|x86.Build.0 = Debug|Any CPU
+		{53B3F51C-F12F-4F0A-A54C-ECB90E91494F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53B3F51C-F12F-4F0A-A54C-ECB90E91494F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53B3F51C-F12F-4F0A-A54C-ECB90E91494F}.Release|x86.ActiveCfg = Release|Any CPU
+		{53B3F51C-F12F-4F0A-A54C-ECB90E91494F}.Release|x86.Build.0 = Release|Any CPU
+		{DB7FDBD3-2A0C-46A9-A2EE-BE294729BA43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB7FDBD3-2A0C-46A9-A2EE-BE294729BA43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB7FDBD3-2A0C-46A9-A2EE-BE294729BA43}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DB7FDBD3-2A0C-46A9-A2EE-BE294729BA43}.Debug|x86.Build.0 = Debug|Any CPU
+		{DB7FDBD3-2A0C-46A9-A2EE-BE294729BA43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB7FDBD3-2A0C-46A9-A2EE-BE294729BA43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB7FDBD3-2A0C-46A9-A2EE-BE294729BA43}.Release|x86.ActiveCfg = Release|Any CPU
+		{DB7FDBD3-2A0C-46A9-A2EE-BE294729BA43}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
