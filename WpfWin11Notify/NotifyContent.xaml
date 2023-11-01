@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="WpfWin11Notify.NotifyContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfWin11Notify"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <BitmapImage x:Key="ResLogo" UriSource="/WpfWin11Notify;Component/Resources/th-c6.png"/>
+    </UserControl.Resources>
+
+    <Grid Background="Black">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Width="80" Height="80" Source="{StaticResource ResLogo}"/>
+        <TextBlock Grid.Column="1" Margin="8 0 0 0" Text="是对方是否是否放松放松发生过的和1是根据房管局大范甘迪爽肤水" Foreground="White" VerticalAlignment="Center"/>
+
+    </Grid>
+
+</UserControl>
