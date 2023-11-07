@@ -49,11 +49,14 @@ namespace WpfApp5
 
         private void HideContent()
         {
-            DoubleAnimation widthAnimation = new DoubleAnimation(contentWidth, 0, TimeSpan.FromSeconds(1));
+            DoubleAnimation widthAnimation = new DoubleAnimation(contentWidth, 0, TimeSpan.FromMilliseconds(200));
             ThicknessAnimation marginAnimation = new ThicknessAnimation(new Thickness(0, 0, 0, 0), new Thickness(contentWidth, 0, 0, 0), TimeSpan.FromMilliseconds(200));
             marginAnimation.Completed += (s, _) => Close();
             ContentGrid.BeginAnimation(Grid.WidthProperty, widthAnimation);
             ContentGrid.BeginAnimation(Grid.MarginProperty, marginAnimation);
+            //var hideAnimation = new ThicknessAnimation(new Thickness(0, 0, 0, 0), new Thickness(hidePosition, 0, 0, 0), TimeSpan.FromMilliseconds(200));
+            //hideAnimation.Completed += (s, _) => Close();
+            //ContentGrid.BeginAnimation(Grid.MarginProperty, hideAnimation);
             if (timer is { IsEnabled: true }) timer.Stop();
         }
 

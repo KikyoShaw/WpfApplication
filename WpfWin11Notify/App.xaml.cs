@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
 using System.Windows;
 
 namespace WpfWin11Notify
@@ -13,5 +8,16 @@ namespace WpfWin11Notify
     /// </summary>
     public partial class App : Application
     {
+        [DllImport("shell32.dll")]
+        static extern int SetCurrentProcessExplicitAppUserModelID([MarshalAs(UnmanagedType.LPWStr)] string AppUserModelID);
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            SetCurrentProcessExplicitAppUserModelID("HuYa.HuyaClient");
+            // 剩余的初始化代码...
+            base.OnStartup(e);
+        }
     }
+
+
 }

@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Windows;
 using Microsoft.Toolkit.Uwp.Notifications;
-using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
-
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
-using System.Windows.Controls;
-//using ToastNotifications;
-//using ToastNotifications.Lifetime;
-//using ToastNotifications.Position;
-using Hardcodet.Wpf.TaskbarNotification;
-using System.Windows.Controls.Primitives;
+using Windows.Foundation.Collections;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows.Media.Imaging;
-using UserControl = System.Windows.Forms.UserControl;
 
 namespace WpfWin11Notify
 {
@@ -25,13 +19,34 @@ namespace WpfWin11Notify
     {
         //private Notifier notifier;
 
+        private string _currentPath;
+
         public MainWindow()
         {
             InitializeComponent();
 
+            // 获取项目bin DEBUG或RELEASE路径
+            string binPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            // 回退两次获得项目的根目录
+            string projectRootDirectory = Directory.GetParent(Directory.GetParent(Directory.GetParent(binPath).FullName).FullName).FullName;
+            // 拼接得到 Resources 目录
+            _currentPath = Path.Combine(projectRootDirectory, "Resources");
             //Init();
-
             Init();
+
+            // 监听通知激活(点击)
+            ToastNotificationManagerCompat.OnActivated += toastArgs =>
+            {
+                // 通知参数
+                ToastArguments args = ToastArguments.Parse(toastArgs.Argument);
+                // 获取任何用户输入
+                ValueSet userInput = toastArgs.UserInput;
+
+                System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                {
+                    System.Windows.MessageBox.Show("Toast被激活（点击），参数是: " + toastArgs.Argument);
+                });
+            };
         }
 
         private void Init()
@@ -67,14 +82,55 @@ namespace WpfWin11Notify
         //    });
         //}
 
+        private void NotifyOne()
+        {
+            var path = Path.Combine(_currentPath, "1.jpg");
+
+            new ToastContentBuilder()
+                .AddText("虎牙发来一条消息") // 标题文本
+                .AddText("周星星开播啦，赶紧过来围观!")
+                .AddAppLogoOverride(new Uri(path), ToastGenericAppLogoCrop.Circle)
+                .AddButton(new ToastButton()
+                    .SetContent("Like")
+                    .AddArgument("action", "like"))
+                .AddButton(new ToastButton()
+                    .SetContent("View")
+                    .AddArgument("action", "viewImage"))
+
+                .Show(toast =>
+                {
+                    toast.ExpirationTime = DateTime.Now.AddSeconds(10); //设置通知的过期时间
+                    toast.Tag = "huya";
+                    toast.Group = "hy";
+                });
+        }
+
         private void Notify()
         {
+            var path = Path.Combine(_currentPath, "1.jpg");
+
+            new ToastContentBuilder()
+                .AddText("虎牙发来一条消息") // 标题文本
+                .AddText("周星星开播啦，赶紧过来围观!")
+                .AddAppLogoOverride(new Uri(path), ToastGenericAppLogoCrop.Circle)
+                .AddButton(new ToastButton()
+                    .SetContent("Like")
+                    .AddArgument("action", "like"))
+                .AddButton(new ToastButton()
+                    .SetContent("View")
+                    .AddArgument("action", "viewImage"))
+                .Show();
+        }
+
+        private void NotifyTest()
+        {
+            var path= Path.Combine(_currentPath, "1.jpg");
+            //var urlPath = "https://huyaimg.msstatic.com/avatar/1031/64/ef633c67bf261723683647ebd14356_180_135.jpg?1650617437";
+
             var content = new ToastContentBuilder()
-                .AddArgument("action", "viewConversation")
-                .AddArgument("conversationId", 9813)
-                .AddText("Andrew sent you a picture")
-                .AddText("Check this out, The Enchantments in Washington!")
-                .AddInlineImage(new Uri("https://unsplash.com/photos/1Rm9GLHV8GQ"))
+                .AddText("虎牙发来一条消息") // 标题文本
+                .AddText("周星星开播啦，赶紧过来围观!")
+                .AddAppLogoOverride(new Uri(path), ToastGenericAppLogoCrop.Circle)
                 .AddButton(new ToastButton()
                     .SetContent("Like")
                     .AddArgument("action", "like"))
@@ -83,10 +139,29 @@ namespace WpfWin11Notify
                     .AddArgument("action", "viewImage"))
                 .GetToastContent();
 
-            var doc = new XmlDocument();
-            doc.LoadXml(content.GetContent());
-            var toast = new ToastNotification(doc);
-            ToastNotificationManager.CreateToastNotifier().Show(toast);
+            var toast = new ToastNotification(content.GetXml());
+            toast.Dismissed += ToastNotification_Dismissed;
+            ToastNotificationManager.CreateToastNotifier("HuYa.HuyaClient").Show(toast);
+        }
+
+        private void ToastNotification_Dismissed(ToastNotification sender, ToastDismissedEventArgs args)
+        {
+            System.Windows.MessageBox.Show("Toast被关闭了!" );
+        }
+
+        private void Change()
+        {
+            var path = Path.Combine(_currentPath, "th-c6.png");
+
+            new ToastContentBuilder()
+                .AddText("虎牙发来一条消息") // 标题文本
+                .AddText("坏空空开播啦，赶紧过来围观!")
+                .AddAppLogoOverride(new Uri(path), ToastGenericAppLogoCrop.Circle)
+                .Show(toast =>
+                {
+                    toast.Tag = "huya";
+                    toast.Group = "hy";
+                });
         }
 
         private void Notify1()
@@ -154,9 +229,103 @@ namespace WpfWin11Notify
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             // Notify();
-            Notify2();
+            Notify();
 
             //notifier.ShowSuccess("Hello World！");
+        }
+
+        private void ButtonBase2_OnClick(object sender, RoutedEventArgs e)
+        {
+            Change();
+        }
+
+        private void ButtonBase3_OnClick(object sender, RoutedEventArgs e)
+        {
+            ToastNotificationManagerCompat.History.Remove("huya", "hy");
+        }
+
+        private void ButtonBase4_OnClick(object sender, RoutedEventArgs e)
+        {
+            NotifyOne();
+        }
+
+        private void ButtonBase5_OnClick(object sender, RoutedEventArgs e)
+        {
+            ToastNotificationManagerCompat.History.Clear();
+        }
+
+        private void ButtonBase6_OnClick(object sender, RoutedEventArgs e)
+        {
+            var path = Path.Combine(_currentPath, "th-c6.png");
+
+            new ToastContentBuilder()
+                .AddText("虎牙发来一条消息") // 标题文本
+                .AddText("周星星开播啦，赶紧过来围观!")
+                .AddAppLogoOverride(new Uri(path), ToastGenericAppLogoCrop.Circle)
+                .Show();
+        }
+
+        private void ButtonBase7_OnClick(object sender, RoutedEventArgs e)
+        {
+            var path = Path.Combine(_currentPath, "th-c6.png");
+
+            new ToastContentBuilder()
+                .AddText("虎牙发来一条消息") // 标题文本
+                .AddText("周星星开播啦，赶紧过来围观!")
+                .AddAppLogoOverride(new Uri(path), ToastGenericAppLogoCrop.Circle)
+                .AddButton(new ToastButton()
+                    .SetContent("Like")
+                    .AddArgument("action", "like"))
+                .AddButton(new ToastButton()
+                    .SetContent("View")
+                    .AddArgument("action", "viewImage"))
+                .Show();
+        }
+
+        private void ButtonBase8_OnClick(object sender, RoutedEventArgs e)
+        {
+            var path = Path.Combine(_currentPath, "th-c6.png");
+            var path2 = Path.Combine(_currentPath, "1.jpg");
+
+            new ToastContentBuilder()
+                .AddText("虎牙发来一条消息") // 标题文本
+                .AddText("周星星开播啦，赶紧过来围观!")
+                .AddAppLogoOverride(new Uri(path), ToastGenericAppLogoCrop.Circle)
+                .AddInlineImage(new Uri(path2))
+                .Show();
+        }
+
+        private void ButtonBase9_OnClick(object sender, RoutedEventArgs e)
+        {
+            var path = Path.Combine(_currentPath, "th-c6.png");
+
+            new ToastContentBuilder()
+                .AddText("虎牙发来一条消息") // 标题文本
+                .AddText("坏空空开播啦，赶紧过来围观!")
+                .AddAppLogoOverride(new Uri(path), ToastGenericAppLogoCrop.Circle)
+                .Show(toast =>
+                {
+                    toast.ExpirationTime = DateTime.Now.AddSeconds(5); //设置通知的过期时间
+                    toast.Tag = "huya";
+                    toast.Group = "hy";
+                });
+        }
+
+        private void ButtonBase10_OnClick(object sender, RoutedEventArgs e)
+        {
+            NotifyTest();
+        }
+
+        private void ButtonBase11_OnClick(object sender, RoutedEventArgs e)
+        {
+            var urlPath = "https://huyaimg.msstatic.com/avatar/1031/64/ef633c67bf261723683647ebd14356_180_135.jpg?1650617437";
+
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(urlPath, UriKind.Absolute);
+            bitmap.EndInit();
+
+            TestImage.Source = bitmap;
         }
     }
 }
