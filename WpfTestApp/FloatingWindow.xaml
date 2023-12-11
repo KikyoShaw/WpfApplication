@@ -1,0 +1,58 @@
+﻿<Window x:Class="WpfTestApp.FloatingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTestApp"
+        mc:Ignorable="d"
+        WindowStyle="None" 
+        ResizeMode="NoResize"       
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"  
+        AllowsTransparency="True"
+        Background="Transparent"
+        Title="FloatingWindow">
+
+    <Border Width="288" Margin="2 0 0 2">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="2" Opacity="0.4" Color="#26000000"/>
+        </Border.Effect>
+        <Grid>
+            <Border Margin="0 8 0 0" Width="280" MinHeight="276" VerticalAlignment="Bottom" HorizontalAlignment="Left" CornerRadius="8" Background="White">
+
+            </Border>
+            <Grid x:Name="xGrid" Height="8">
+                <!--<Path Fill="White" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    --><!--向左-->
+                    <!--<Path.Data>
+                        <PathGeometry Figures="
+                            M 0,8 
+                            L 8,0 8,16
+                            Z"/>
+                    </Path.Data>-->
+                    <!--向右--><!--
+                    <Path.Data>
+                        <PathGeometry Figures="
+                            M 8,8 
+                            L 0,0 0,16
+                            Z"/>
+                    </Path.Data>
+                </Path>-->
+            </Grid>
+
+            <!--<Grid HorizontalAlignment="Center" Height="8" VerticalAlignment="Top" Margin="0 0 114 0">
+                <Path Fill="#FEFAE5" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <Path.Data>
+                        <PathGeometry Figures=" 
+                          M 30,0 
+                          L 30,8 22,8
+                          L 30,0 38,8
+                          L 38,8 30,8"/>
+                    </Path.Data>
+                </Path>
+            </Grid>-->
+        </Grid>
+    </Border>
+    
+
+</Window>
