@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Net;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace WpfTestApp
 {
@@ -121,9 +122,16 @@ namespace WpfTestApp
 
         private void ButtonBase1_OnClick(object sender, RoutedEventArgs e)
         {
-            var path = @"C:\Users\shaw\Downloads\10440407_com.qqgame.hlddz_a2850302_8.024.016_gUUbR3.apk";
+            // 创建一个 Stopwatch 实例
+            Stopwatch stopwatch = new Stopwatch();
+            // 开始计时
+            stopwatch.Start();
+            var path = @"D:\HuyaClient.exe";
             var tt = CalculateMD5(path);
-            System.Diagnostics.Trace.WriteLine($"PackageMd5:{tt}");
+            stopwatch.Stop();
+            // 获取经过的时间
+            var elapsedTime = stopwatch.Elapsed.TotalMilliseconds;
+            System.Diagnostics.Trace.WriteLine($"PackageMd5:{tt}, elapsedTime:{elapsedTime}");
         }
 
         private string CalculateMD5(string filePath)
