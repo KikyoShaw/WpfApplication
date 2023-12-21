@@ -34,5 +34,13 @@ using GalaSoft.MvvmLight;
             get => _vProps;
             set => Set("vProps", ref _vProps, value);
         }
+
+        private bool _bMouseHover = false;
+
+        public bool bMouseHover
+        {
+            get => _bMouseHover;
+            set => Set("bMouseHover", ref _bMouseHover, value);
+        }
     }
 }

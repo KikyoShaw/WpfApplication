@@ -53,7 +53,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationDemoWPF", "Noti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfTestApp", "WpfTestApp\WpfTestApp.csproj", "{4E941E06-788A-48FB-984C-4D0A34823DFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfWebService", "WpfWebService\WpfWebService.csproj", "{DD025220-3220-4C7A-8126-A880065C618D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfWebService", "WpfWebService\WpfWebService.csproj", "{DD025220-3220-4C7A-8126-A880065C618D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppNet", "WpfAppNet\WpfAppNet.csproj", "{CD32D588-F35E-4B7D-9457-7E2C70761BB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -271,6 +273,14 @@ Global
 		{DD025220-3220-4C7A-8126-A880065C618D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DD025220-3220-4C7A-8126-A880065C618D}.Release|x86.ActiveCfg = Release|Any CPU
 		{DD025220-3220-4C7A-8126-A880065C618D}.Release|x86.Build.0 = Release|Any CPU
+		{CD32D588-F35E-4B7D-9457-7E2C70761BB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD32D588-F35E-4B7D-9457-7E2C70761BB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD32D588-F35E-4B7D-9457-7E2C70761BB2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CD32D588-F35E-4B7D-9457-7E2C70761BB2}.Debug|x86.Build.0 = Debug|Any CPU
+		{CD32D588-F35E-4B7D-9457-7E2C70761BB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD32D588-F35E-4B7D-9457-7E2C70761BB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD32D588-F35E-4B7D-9457-7E2C70761BB2}.Release|x86.ActiveCfg = Release|Any CPU
+		{CD32D588-F35E-4B7D-9457-7E2C70761BB2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

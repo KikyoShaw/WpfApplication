@@ -22,6 +22,10 @@
                    Cursor="Hand" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>-->
         </Grid>
 
+        <Grid Visibility="{Binding bMouseHover, Converter={x:Static local:TestConverter.Instance}, ConverterParameter='param1,param2,param3'}">
+
+        </Grid>
+
         <!--<Polygon  
             Points="300,200 400,125 400,275"  
             Stroke="#FFE0E0E0"
