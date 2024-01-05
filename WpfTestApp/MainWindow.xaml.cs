@@ -167,5 +167,48 @@ namespace WpfTestApp
         {
             
         }
+
+        private void ButtonBase4_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var sUrl = "https://ttc.gdt.qq.com/gdt_click.fcg?viewid=Eq4PydrpQuGdu_AQ_U6Ln_xSWUhOGSltbGcXBvPgXpfp9asR!n_t6IjWvrc3Z3G8TYPxLE1CsBSHhWvEOLUnbpIcFzjzgZcsDDhrEsvzFlsPZn2JcOglFLliOIcjZXBv9qfkdXp_XxGRjnWUxu0KdPzZxnoE0ZV5puu8NBvwOLE&jtype=0&wspm=1&i=1&os=2&clklpp=__CLICK_LPP__&cdnxj=1&xp=2&pid=2037989259468491&vto=__VIDEO_PLAY_TIME__&report_source=__REPORT_SOURCE__&device_os_type=android&tl=1&video=%7b%22bt%22%3a%220%22%2c%22et%22%3a%226225%22%2c%22bf%22%3a%221%22%2c%22ef%22%3a%220%22%2c%22pp%22%3a%220%22%2c%22pa%22%3a%2211%22%2c%22ft%22%3a%222%22%7d";
+                //加个防御
+                if (string.IsNullOrEmpty(sUrl) || !sUrl.StartsWith("http")
+                                               || !Uri.IsWellFormedUriString(sUrl, UriKind.RelativeOrAbsolute))
+                    return;
+
+                //绕过证书验证
+                //ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+
+                // 根据uri创建HttpWebRequest对象 
+                HttpWebRequest httpReq = (HttpWebRequest)WebRequest.Create(sUrl);
+                //对发送的数据不使用缓存 
+                httpReq.AllowWriteStreamBuffering = false;
+                httpReq.Timeout = 4000;
+                httpReq.Method = "GET";
+                //获取服务器端的响应 
+                HttpWebResponse webResponse = (HttpWebResponse)httpReq.GetResponse();
+                Stream stream = webResponse.GetResponseStream();
+                if (stream == null)
+                    return;
+                StreamReader streamReader = new StreamReader(stream);
+                //读取服务器端返回的消息 
+                var sResponse = streamReader.ReadToEnd();
+                stream.Close();
+                streamReader.Close();
+                int iStatusCode = (int)webResponse.StatusCode;
+                if ((iStatusCode / 100) != 2)
+                {
+                    System.Diagnostics.Trace.WriteLine("VideoMgr do GetRequest url:" + sUrl + ", status code: " + iStatusCode.ToString() + " msg:" + sResponse);
+                }
+
+                System.Diagnostics.Trace.WriteLine($"第三方上报请求完成：iStatusCode:{iStatusCode}");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine($"Exception:{ex.Message}");
+            }
+        }
     }
 }

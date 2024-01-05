@@ -22,7 +22,7 @@
                    Cursor="Hand" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>-->
         </Grid>
 
-        <Grid Visibility="{Binding bMouseHover, Converter={x:Static local:TestConverter.Instance}, ConverterParameter='param1,param2,param3'}">
+        <Grid Visibility="{Binding bMouseHover, Converter={x:Static local:TestConverter.Instance}, ConverterParameter='w1,w2,w3'}">
 
         </Grid>
 

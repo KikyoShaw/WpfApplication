@@ -16,8 +16,9 @@
             <Button Margin="6 0 0 0" Height="40" Width="96" Content="计算文件md5" Click="ButtonBase1_OnClick"/>
             <Button x:Name="TestButton" Height="40" Width="56" Margin="6 0 0 0" Content="测试"  Click="TestButton_Click"  MouseEnter="OnMouseEnter" MouseLeave="OnMouseLeave"/>
             <Button Margin="6 0 0 0" Height="40" Width="56" Content="网络" Click="ButtonBase3_OnClick"/>
+            <Button Margin="6 0 0 0" Height="40" Width="56" Content="http" Click="ButtonBase4_OnClick"/>
         </StackPanel>
         <!--<local:UserControl1 Grid.Row="1" x:Name="AnimationC"/>-->
-        <local:UserControl5 Grid.Row="1"/>
+        <!--<local:UserControl5 Grid.Row="1"/>-->
     </Grid>
 </Window>
