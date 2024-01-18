@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="WpfTestApp.UserControl8"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfTestApp"
+             xmlns:btn="clr-namespace:WpfTestApp.Btn"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="DownLoadBtnBg" EndPoint="0,1">
+            <GradientStop Color="#4579FF" Offset="0"/>
+            <GradientStop Color="#3B65FF" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="DownLoadBtnHoverBg" EndPoint="0,1">
+            <GradientStop Color="#406EF2" Offset="0" />
+            <GradientStop Color="#3F6EF2" Offset="1" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="DownLoadBtnPushBg" EndPoint="0,1">
+            <GradientStop Color="#3C6AE6" Offset="0" />
+            <GradientStop Color="#3A64E6" Offset="1" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="DownLoadBtnBg2" EndPoint="0,1">
+            <GradientStop Color="#704579FF" Offset="0"/>
+            <GradientStop Color="#703B65FF" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="OpenBtnBg" EndPoint="0,1">
+            <GradientStop Color="#FFEB3B" Offset="0"/>
+            <GradientStop Color="#FFD736" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="OpenBtnHoverBg" EndPoint="0,1">
+            <GradientStop Color="#F2DC37" Offset="0" />
+            <GradientStop Color="#F2D335" Offset="1" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="OpenBtnPushBg" EndPoint="0,1">
+            <GradientStop Color="#EBD735" Offset="0" />
+            <GradientStop Color="#EBCC33" Offset="1" />
+        </LinearGradientBrush>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <btn:DownLoadButton Margin="0 20 0 0" Height="28" Width="60" BorderRadius="14" Text="下载" FontWeight="Bold" Click="GameItemDownLoad_Clicked"
+                            Foreground="#4579FF" HoverForeground="White" PushForeground="White" BorderThickness="1" Cursor="Hand"
+                            BorderBrush="{StaticResource DownLoadBtnBg}" HoverBorderBrush="{StaticResource DownLoadBtnHoverBg}" PushBorderBrush="{StaticResource DownLoadBtnPushBg}" 
+                            BtnBackground="Transparent" HoverBackground="{StaticResource DownLoadBtnHoverBg}" PushBackground="{StaticResource DownLoadBtnPushBg}"/>
+
+        <btn:DownLoadButton Margin="0 20 0 0" Height="28" Width="60" BorderRadius="14" Text="暂停" FontWeight="Bold" Foreground="#FFFFFF" HoverForeground="#FFFFFF" PushForeground="#FFFFFF"
+                            BtnBackground="{StaticResource DownLoadBtnBg}" HoverBackground="{StaticResource DownLoadBtnBg}" PushBackground="{StaticResource DownLoadBtnPushBg}" 
+                            DownloadBackground="{StaticResource DownLoadBtnBg2}" DownloadProgress="70.2" ButtonType="download" Cursor="Hand" Click="GameItemDownLoadPause_Clicked"/>
+
+        <btn:DownLoadButton Margin="0 20 0 0" Height="28" Width="60" Cursor="Hand" BorderRadius="14" Text="继续" FontWeight="Bold" Foreground="#FFFFFF" HoverForeground="#FFFFFF" PushForeground="#FFFFFF" Click="GameItemDownLoadContinue_Clicked"
+                            BtnBackground="{StaticResource DownLoadBtnBg}" HoverBackground="{StaticResource DownLoadBtnHoverBg}" PushBackground="{StaticResource DownLoadBtnPushBg}"/>
+
+        <btn:DownLoadButton Margin="0 20 0 0" Height="28" Width="60" Cursor="Hand" BorderRadius="14" Text="安装中" FontWeight="Bold" Foreground="#999999"
+                            BtnBackground="#EEEEEE" HoverBackground="#EEEEEE" PushBackground="#EEEEEE" IsEnabled="False"/>
+
+        <btn:DownLoadButton Margin="0 20 0 0" Height="28" Width="60" Cursor="Hand" BorderRadius="14" Text="打开" FontWeight="Bold" Foreground="#222222" Click="GameItemDownLoadOpen_Clicked"
+                            BtnBackground="{StaticResource OpenBtnBg}" HoverBackground="{StaticResource OpenBtnHoverBg}" PushBackground="{StaticResource OpenBtnPushBg}" />
+    </StackPanel>
+
+</UserControl>
