@@ -3,12 +3,12 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
-using System.Drawing;
 using System.Security.Cryptography;
 using System.Text;
 using System.Net;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Management;
+using System.Security.AccessControl;
 
 namespace WpfTestApp
 {
@@ -30,6 +30,10 @@ namespace WpfTestApp
             InitPopup();
 
             this.Closing += MainWindow_Closing;
+
+            int totalPages = (int)Math.Ceiling((double)0 / 96);
+
+
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -210,5 +214,81 @@ namespace WpfTestApp
                 System.Diagnostics.Trace.WriteLine($"Exception:{ex.Message}");
             }
         }
+
+        private void ButtonBase5_OnClick(object sender, RoutedEventArgs e)
+        {
+            GetCpuCores();
+            GetGraphicsCard();
+        }
+
+        private void GetCpuCores()
+        {
+            var coreCount = "";
+            var logicalProcessorCount = "";
+            var maxClockSpeed = "";
+
+            foreach (var item in new ManagementObjectSearcher("Select * from Win32_Processor").Get())
+            {
+                coreCount += item["NumberOfCores"].ToString();
+                logicalProcessorCount += item["ThreadCount"].ToString();
+                maxClockSpeed = item["MaxClockSpeed"].ToString();
+            }
+
+            System.Diagnostics.Trace.WriteLine("CPU Physical Cores(CPU 物理核心): " + coreCount);
+            System.Diagnostics.Trace.WriteLine("CPU Logical Processors(CPU逻辑处理器): " + logicalProcessorCount);
+            System.Diagnostics.Trace.WriteLine("CPU Max Speed (MHz)(CPU最大频率): " + maxClockSpeed);
+        }
+
+        private void GetGraphicsCard()
+        {
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_VideoController");
+
+            var videoControllers = searcher.Get();
+            if (videoControllers.Count <= 0)
+            {
+                System.Diagnostics.Trace.WriteLine("本机没装显卡");
+                return;
+            }
+            System.Diagnostics.Trace.WriteLine("本机有装显卡");
+            foreach (var o in videoControllers)
+            {
+                var mo = (ManagementObject)o;
+                System.Diagnostics.Trace.WriteLine("Name(名称): " + mo["Name"]);
+                System.Diagnostics.Trace.WriteLine("Status(状态): " + mo["Status"]);
+                System.Diagnostics.Trace.WriteLine("Caption(标题): " + mo["Caption"]);
+                System.Diagnostics.Trace.WriteLine("DeviceID(设备ID): " + mo["DeviceID"]);
+                System.Diagnostics.Trace.WriteLine("AdapterRAM(适配器RAM): " + mo["AdapterRAM"]);
+                System.Diagnostics.Trace.WriteLine("AdapterDACType(适配器DAC类型): " + mo["AdapterDACType"]);
+                System.Diagnostics.Trace.WriteLine("Monochrome(单色模式): " + mo["Monochrome"]);
+                System.Diagnostics.Trace.WriteLine("InstalledDisplayDrivers(已安装的显示驱动) : " + mo["InstalledDisplayDrivers"]);
+                System.Diagnostics.Trace.WriteLine("DriverVersion(驱动版本): " + mo["DriverVersion"]);
+                System.Diagnostics.Trace.WriteLine("VideoProcessor(视频处理器): " + mo["VideoProcessor"]);
+                System.Diagnostics.Trace.WriteLine("VideoArchitecture(视频架构): " + mo["VideoArchitecture"]);
+                System.Diagnostics.Trace.WriteLine("VideoMemoryType(视频内存类型): " + mo["VideoMemoryType"]);
+            }
+        }
+
+        private void GetCpuName()
+        {
+            ManagementClass mc = new ManagementClass("Win32_Processor");
+            ManagementObjectCollection moc = mc.GetInstances();
+
+            foreach (var o in moc)
+            {
+                var mo = (ManagementObject)o;
+                var capabilities = mo["Name"].ToString();
+                //foreach (var capability in capabilities)
+                //{
+                //    if (capability.Contains("avx2"))
+                //    {
+                //        System.Diagnostics.Trace.WriteLine("Your CPU supports H.265 media");
+                //        return;
+                //    }
+                //}
+            }
+
+            System.Diagnostics.Trace.WriteLine("Your CPU not supports H.265 media");
+        }
+
     }
 }

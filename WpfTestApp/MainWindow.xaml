@@ -17,6 +17,7 @@
             <Button x:Name="TestButton" Height="40" Width="56" Margin="6 0 0 0" Content="测试"  Click="TestButton_Click"  MouseEnter="OnMouseEnter" MouseLeave="OnMouseLeave"/>
             <Button Margin="6 0 0 0" Height="40" Width="56" Content="网络" Click="ButtonBase3_OnClick"/>
             <Button Margin="6 0 0 0" Height="40" Width="56" Content="http" Click="ButtonBase4_OnClick"/>
+            <Button Margin="6 0 0 0" Height="40" Width="56" Content="本机信息" Click="ButtonBase5_OnClick"/>
         </StackPanel>
         <!--<local:UserControl1 Grid.Row="1" x:Name="AnimationC"/>-->
         <local:UserControl8 Grid.Row="1"/>
