@@ -9,6 +9,7 @@ using System.Net;
 using System.Diagnostics;
 using System.Management;
 using System.Security.AccessControl;
+using System.Threading.Tasks;
 
 namespace WpfTestApp
 {
@@ -290,5 +291,98 @@ namespace WpfTestApp
             System.Diagnostics.Trace.WriteLine("Your CPU not supports H.265 media");
         }
 
+        private void ButtonBase6_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // 创建一个WMI查询来获取Hyperv的状态
+                var query = new ObjectQuery("SELECT * FROM Win32_Service WHERE Name = 'vmms'");
+
+                // 创建一个ManagementObjectSearcher对象来执行WMI查询
+                var searcher = new ManagementObjectSearcher(query);
+
+                // 获取查询到的服务对象（应该只有一个）
+                var services = searcher.Get();
+
+                foreach (var o in services)
+                {
+                    var service = (ManagementObject)o;
+                    string serviceName = service["Name"].ToString();
+                    string serviceState = service["State"].ToString();
+
+                    if (serviceState == null)
+                    {
+                        System.Diagnostics.Trace.WriteLine("检测Hyperv状态时出错：serviceState is null.");
+                        return;
+                    }
+
+                    // 检查服务状态是否为"Running"，表示Hyperv已开启
+                    System.Diagnostics.Trace.WriteLine(
+                        serviceState.Equals("Running", StringComparison.OrdinalIgnoreCase) ? "Hyperv已开启" : "Hyperv未开启");
+                }
+            }
+            catch (ManagementException ex)
+            {
+                System.Diagnostics.Trace.WriteLine("检测Hyperv状态时出错：" + ex.Message);
+            }
+        }
+
+        private void ButtonBase7_OnClick(object sender, RoutedEventArgs e)
+        {
+            Task.Run(CloseHyperV);
+        }
+
+        private void CloseHyperV()
+        {
+            try
+            {
+                // 创建一个新的进程对象
+                Process process = new Process();
+
+                // 定义进程的启动信息
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+
+                // 设置启动信息的属性
+                startInfo.FileName = "cmd.exe"; // 指定要执行的命令行程序
+                startInfo.Arguments = "/C dism.exe /Online /Disable-Feature:Microsoft-Hyper-V"; // 指定要执行的命令行参数
+                startInfo.Verb = "runas"; // 以管理员权限运行
+                startInfo.RedirectStandardOutput = true; // 将输出重定向到标准输出流
+                startInfo.UseShellExecute = false; // 不使用操作系统外壳程序启动进程
+                startInfo.CreateNoWindow = true; // 不创建新窗口显示进程
+
+                // 将启动信息设置到进程对象中
+                process.StartInfo = startInfo;
+
+                // 启动进程
+                process.Start();
+
+                // 读取进程的标准输出流
+                string output = process.StandardOutput.ReadToEnd();
+
+                // 等待进程结束
+                process.WaitForExit();
+
+                // 输出命令的执行结果
+                System.Diagnostics.Trace.WriteLine(output);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine("调用cmd指令时出错：" + ex.Message);
+            }
+        }
+
+        private void ButtonBase8_OnClick(object sender, RoutedEventArgs e)
+        {
+            ManagementScope scope = new ManagementScope("\\\\.\\root\\cimv2");
+            ObjectQuery query = new ObjectQuery("SELECT * FROM Win32_Processor");
+
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(scope, query);
+            foreach (var o in searcher.Get())
+            {
+                var mobj = (ManagementObject)o;
+                bool? virtualizationEnabled = mobj["SecondLevelAddressTranslationExtensions"] as bool?;
+                System.Diagnostics.Trace.WriteLine("VT Enabled: " + virtualizationEnabled);
+            }
+        }
     }
 }
