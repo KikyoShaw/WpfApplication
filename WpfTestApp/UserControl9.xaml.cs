@@ -29,7 +29,7 @@ namespace WpfTestApp
         public UserControl9()
         {
             InitializeComponent();
-            m_Timer1.Interval = TimeSpan.FromMilliseconds(50);
+            m_Timer1.Interval = TimeSpan.FromMilliseconds(300);
             m_Timer1.Tick += M_Timer1_Tick;
         }
 

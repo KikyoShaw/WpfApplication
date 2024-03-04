@@ -17,7 +17,7 @@ namespace WpfTestApp.CircularProgressBar
 
         public double CurrentValue1
         {
-            set => SetValue2(value);
+            set => SetValue(value);
         }
 
         /// <summary>
