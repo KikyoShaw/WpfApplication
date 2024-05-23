@@ -23,6 +23,6 @@
             <Button Margin="6 0 0 0" Height="40" Width="96" Content="vt检测" Click="ButtonBase8_OnClick"/>
         </StackPanel>
         <!--<local:UserControl1 Grid.Row="1" x:Name="AnimationC"/>-->
-        <local:UserControl9 Grid.Row="1"/>
+        <local:UserControl4 Grid.Row="1"/>
     </Grid>
 </Window>
