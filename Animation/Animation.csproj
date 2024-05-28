@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="C:\Users\shaw\.nuget\packages\lottiesharp\2.3.0\contentFiles\any\net6.0-windows7.0\lottie_sharp.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\1.json" />
     <None Remove="Resources\LottieLogo.json" />
   </ItemGroup>
