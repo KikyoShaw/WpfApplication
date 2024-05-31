@@ -13,10 +13,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button Height="40" Width="100" Content="播放" Click="ButtonBase_OnClick"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Height="40" Width="100" Content="播放" Click="ButtonBase_OnClick"/>
+            <Button Height="40" Width="100" Content="暂停" Click="ButtonBase2_OnClick"/>
+        </StackPanel>
 
         <Grid Grid.Row="1">
-            <Grid Height="20" Width="120">
+            <Grid Height="20" Width="120" ClipToBounds="True">
                 <Grid Height="20" Width="120" Background="Black">
                     <Grid x:Name="A" Width="100" Height="20" Background="Red">
                         <Grid.RenderTransform>
@@ -25,7 +28,7 @@
                     </Grid>
                     <Grid x:Name="B" Width="100" Height="20" Background="Yellow">
                         <Grid.RenderTransform>
-                            <TranslateTransform X="0" Y="22"/>
+                            <TranslateTransform X="0" Y="24"/>
                         </Grid.RenderTransform>
                     </Grid>
                 </Grid>
