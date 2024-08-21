@@ -23,5 +23,10 @@ namespace WpfApp2
             this.DataContext = MainVm.Instance;
             InitializeComponent();
         }
+
+        private void FrameworkElement_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            System.Diagnostics.Trace.WriteLine("1111111111111111111111");
+        }
     }
 }

@@ -15,6 +15,13 @@ namespace WpfSvg
         public UserControl2()
         {
             InitializeComponent();
+
+            TimeSpan countDown = TimeSpan.FromMinutes(6);
+            countDown = countDown.Subtract(TimeSpan.FromSeconds(1));
+            int minutes = countDown.Minutes;
+            int seconds = countDown.Seconds;
+            string formattedMinutes = countDown.Minutes.ToString("00");
+
             Init();
         }
 

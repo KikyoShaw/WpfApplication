@@ -19,6 +19,7 @@
     <None Remove="Resources\7.jpg" />
     <None Remove="Resources\8.jpg" />
     <None Remove="Resources\9.jpg" />
+    <None Remove="Resources\bg.png" />
     <None Remove="Resources\button.png" />
   </ItemGroup>
 
@@ -39,6 +40,7 @@
     <Resource Include="Resources\7.jpg" />
     <Resource Include="Resources\8.jpg" />
     <Resource Include="Resources\9.jpg" />
+    <Resource Include="Resources\bg.png" />
     <Resource Include="Resources\button.png" />
   </ItemGroup>
 

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WpfApp2"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid SizeChanged="FrameworkElement_OnSizeChanged">
         <ScrollViewer x:Name="propScroll"
                       HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
             <ItemsControl ItemsSource="{Binding vProps}">
