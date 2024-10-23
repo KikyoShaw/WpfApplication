@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:videoItem"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="400">
+        Title="MainWindow" Height="400" Width="400">
 
     <Window.Resources>
         <SolidColorBrush x:Key="ForegroundStyle" Color="#999999"/>
@@ -17,11 +17,16 @@
             </Style.Triggers>
         </Style>-->
         <SolidColorBrush x:Key="OpacityBrush" Color="#FFFFFF" Opacity="0.08"/>
-
     </Window.Resources>
 
     <Grid Background="#272A2F">
-        <Button Height="90" Width="337" Cursor="Hand" Click="Button_Click">
+        <Button Width="100" Height="45" VerticalAlignment="Top" Click="ButtonBase_OnClick"/>
+
+        <Image x:Name="Xb" Height="90" Width="337" Source="/videoItem;Component/Resources/icon_empty.png" Visibility="Collapsed"/>
+
+        <Image Height="90" Width="337" Source="/videoItem;Component/Resources/333.png" VerticalAlignment="Bottom"/>
+
+        <Button Height="90" Width="337" Cursor="Hand" Click="Button_Click" Visibility="Collapsed">
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="RecommendGrid">

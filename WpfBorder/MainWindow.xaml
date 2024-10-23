@@ -1,0 +1,55 @@
+﻿<Window x:Class="WpfBorder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfBorder"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <!--<Style TargetType="{x:Type local:InnerBorder}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type local:InnerBorder}">
+                        <Grid>
+                            <Border CornerRadius="8" Background="{TemplateBinding Background}"/>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="8"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+
+        <BitmapImage x:Key="ResOne" UriSource="/WpfBorder;Component/Res/1.png"/>
+    </Window.Resources>
+
+    <Grid Background="#0B0B10">
+        <local:InnerBorder InnerBorderThickness="4"
+                           CornerRadius="8"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Width="220"
+                           Height="220">
+            <local:InnerBorder.Style>
+                <Style TargetType="local:InnerBorder">
+                    <Setter Property="Background" Value="#1D1D21"/>
+                    <Setter Property="InnerBorderBrush" Value="#15FFFFFF"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#2F2F33"/>
+                            <Setter Property="InnerBorderBrush" Value="#FFD736"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </local:InnerBorder.Style>
+            <!--<local:InnerBorder.Background>
+                <ImageBrush ImageSource="{StaticResource ResOne}" Stretch="Fill"/>
+            </local:InnerBorder.Background>-->
+            <TextBlock Text="带内描边的Border" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </local:InnerBorder>
+    </Grid>
+
+</Window>

@@ -23,11 +23,27 @@ namespace videoItem
 		public MainWindow()
 		{
 			InitializeComponent();
+
+            this.DpiChanged += MainWindow_DpiChanged;
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
+        private void MainWindow_DpiChanged(object sender, DpiChangedEventArgs e)
+        {
+            if (e.NewDpi.DpiScaleX == e.OldDpi.DpiScaleX && e.NewDpi.DpiScaleY == e.OldDpi.DpiScaleY)
+                return;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			MessageBox.Show("clicked");
 		}
-	}
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            if(Xb.Visibility == Visibility.Collapsed)
+                Xb.Visibility = Visibility.Visible;
+            else if(Xb.Visibility == Visibility.Visible)
+                Xb.Visibility = Visibility.Collapsed;
+        }
+    }
 }

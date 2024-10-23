@@ -55,6 +55,16 @@ using GalaSoft.MvvmLight;
         public void TestProp()
         {
             vProps.Clear();
+
+            for (int i = 0; i < 5; i++)
+            {
+                var t = @$"/WpfApp2;Component/Resources/{i + 1}.jpg";
+                var item = new UIPropItem();
+                item.sIconUrl = t;
+                vProps.Add(item);
+                vProps.Add(item);
+                vProps.Add(item);
+            }
             var p = vTenProps;
         }
 

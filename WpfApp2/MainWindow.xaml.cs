@@ -35,10 +35,12 @@ namespace WpfApp2
             this.DataContext = MainVm.Instance;
             InitializeComponent();
 
+            this.DpiChanged += MainWindow_DpiChanged;
+
             //var defaultFontFamily = this.FontFamily;
             //MessageBox.Show($"默认字体：{defaultFontFamily.Source}");
 
-            TestHyLogoSvg();
+           // TestHyLogoSvg();
 
 
             string versionPattern = @"^\d+\.\d+\.\d+\.\d+$";
@@ -193,11 +195,17 @@ namespace WpfApp2
 
         }
 
+        private void MainWindow_DpiChanged(object sender, DpiChangedEventArgs e)
+        {
+            if (e.NewDpi.DpiScaleX == e.OldDpi.DpiScaleX && e.NewDpi.DpiScaleY == e.OldDpi.DpiScaleY)
+                return;
+        }
+
         private void UIElement_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             try
             {
-                //TreasurePopup.IsOpen = true;
+                TreasurePopup.IsOpen = true;
             }
             catch /*(Exception exception)*/
             {
@@ -211,6 +219,8 @@ namespace WpfApp2
             try
             {
                 //TreasurePopup.IsOpen = true;
+
+                MainVm.Instance.TestProp();
             }
             catch /*(Exception exception)*/
             {

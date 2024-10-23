@@ -9,12 +9,12 @@
         PreviewKeyDown="MainWindow_OnPreviewKeyDown"
         PreviewKeyUp="MainWindow_OnPreviewKeyUp">
 
-    <!--<Grid>
-        <local:UserControl1 Visibility="Collapsed"/>
-        <Button VerticalAlignment="Top" Width="120" Height="45" Content="测试" Click="ButtonBase_OnClick"/>
-    </Grid>-->
+    <!--<Grid>-->
+        <!--<local:UserControl1 Visibility="Collapsed"/>
+        <Button VerticalAlignment="Top" Width="120" Height="45" Content="测试" Click="ButtonBase_OnClick"/>-->
+    <!--</Grid>-->
 
-    <Grid Background="#15171B">
+    <!--<Grid Background="#15171B">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="*"/>
@@ -38,9 +38,9 @@
                 </Rectangle>
             </Grid>
         </Grid>
-    </Grid>
+    </Grid>-->
 
-        <!--<Grid Background="#2E3138">
+        <Grid Background="#2E3138">
         <Grid Margin="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -49,17 +49,17 @@
             <local:UserControl1/>
             <Button x:Name="GiftBtn" Grid.Column="1" Width="24" Height="44"
                     Cursor="Hand" Click="GiftBtn_OnClick"/>
-            --><!--<Image x:Name="GiftBtn" Grid.Column="1" Width="24" Height="44" Source="/WpfApp2;Component/Resources/button.png" 
-                   Cursor="Hand" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>--><!--
+            <!--<Image x:Name="GiftBtn" Grid.Column="1" Width="24" Height="44" Source="/WpfApp2;Component/Resources/button.png" 
+                   Cursor="Hand" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>-->
         </Grid>
 
-        <TextBlock Text="{Binding iCount, StringFormat=N0}" FontSize="16" Foreground="Wheat"/>
+        <!--<TextBlock Text="{Binding iCount, StringFormat=N0}" FontSize="16" Foreground="Wheat"/>
 
         <Grid Visibility="{Binding bMouseHover, Converter={x:Static local:TestConverter.Instance}, ConverterParameter='w1,w2,w3'}">
 
-        </Grid>
+        </Grid>-->
 
-        --><!--<Polygon  
+        <!--<Polygon  
             Points="300,200 400,125 400,275"  
             Stroke="#FFE0E0E0"
             StrokeThickness="1">
@@ -114,7 +114,7 @@
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
             <Line X1="10" Y1="16" X2="16" Y2="10" Stroke="Black" StrokeThickness="1"/>
             <Line X1="16" Y1="10" X2="22" Y2="16" Stroke="Black" StrokeThickness="1"/>
-        </Grid>--><!--
+        </Grid>-->
 
         <Popup x:Name="TreasurePopup" IsOpen="False" Focusable="False" StaysOpen="False" AllowsTransparency="True" Placement="Top" 
                PlacementTarget="{Binding ElementName=GiftBtn}" HorizontalOffset="-330" VerticalOffset="-10">
@@ -158,6 +158,6 @@
             </Grid>
         </Popup>
 
-    </Grid>-->
+    </Grid>
 
 </Window>
