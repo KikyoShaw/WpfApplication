@@ -17,7 +17,7 @@
             <Button Margin="4 0 0 0" Height="40" Width="100" Content="播放" Click="ButtonBase2_OnClick"/>
             <Button Margin="4 0 0 0" Height="40" Width="100" Content="停止" Click="ButtonBase3_OnClick"/>
         </StackPanel>
-        <local:AnimationFrameControl x:Name="AnimationControl" Grid.Row="1" Margin="0 10 0 0" Width="160" Height="160"/>
+        <local:AnimationFrameControl x:Name="AnimationControl" Grid.Row="1" Margin="0 10 0 0" Width="16" Height="16"/>
     </Grid>
 
 </UserControl>

@@ -15,15 +15,34 @@
   <ItemGroup>
     <None Remove="Resources\1.json" />
     <None Remove="Resources\LottieLogo.json" />
+    <None Remove="Resources\test2\000.png" />
+    <None Remove="Resources\test2\001.png" />
+    <None Remove="Resources\test2\002.png" />
+    <None Remove="Resources\test2\003.png" />
+    <None Remove="Resources\test2\004.png" />
+    <None Remove="Resources\test2\005.png" />
+    <None Remove="Resources\test2\006.png" />
+    <None Remove="Resources\test2\007.png" />
+    <None Remove="Resources\test2\008.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="LottieSharp" Version="2.3.0" />
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Resources\1.json" />
     <Resource Include="Resources\LottieLogo.json" />
+    <Resource Include="Resources\test2\000.png" />
+    <Resource Include="Resources\test2\001.png" />
+    <Resource Include="Resources\test2\002.png" />
+    <Resource Include="Resources\test2\003.png" />
+    <Resource Include="Resources\test2\004.png" />
+    <Resource Include="Resources\test2\005.png" />
+    <Resource Include="Resources\test2\006.png" />
+    <Resource Include="Resources\test2\007.png" />
+    <Resource Include="Resources\test2\008.png" />
   </ItemGroup>
 
 </Project>
