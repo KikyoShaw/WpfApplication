@@ -4,10 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         PreviewKeyDown="MainWindow_OnPreviewKeyDown"
         PreviewKeyUp="MainWindow_OnPreviewKeyUp">
+
+    <Grid x:Name="web2Layout" Margin="12,0,0,0" >
+        <WindowsFormsHost Name="windowsFormsHost" Background="Black">
+            <wf:Panel x:Name="hostPanel"/>
+        </WindowsFormsHost>
+    </Grid>
 
     <!--<Grid>-->
         <!--<local:UserControl1 Visibility="Collapsed"/>
@@ -40,7 +47,7 @@
         </Grid>
     </Grid>-->
 
-        <Grid Background="#2E3138">
+    <!--<Grid Background="#2E3138">
         <Grid Margin="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -49,11 +56,23 @@
             <local:UserControl1/>
             <Button x:Name="GiftBtn" Grid.Column="1" Width="24" Height="44"
                     Cursor="Hand" Click="GiftBtn_OnClick"/>
-            <!--<Image x:Name="GiftBtn" Grid.Column="1" Width="24" Height="44" Source="/WpfApp2;Component/Resources/button.png" 
-                   Cursor="Hand" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>-->
+            --><!--<Image x:Name="GiftBtn" Grid.Column="1" Width="24" Height="44" Source="/WpfApp2;Component/Resources/button.png" 
+                   Cursor="Hand" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>--><!--
         </Grid>
+            <TextBlock Margin="14 0 10 0" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Width="125" 
+                       Padding="0 6 0 0" Foreground="#FFFFFF" FontWeight="Bold"
+                       VerticalAlignment="Top">
+                <InlineUIContainer BaselineAlignment="Top">
+                    <Border Margin="0 -2 4 6" Background="#FFFFFF" CornerRadius="2" Height="18" Width="32">
+                        <TextBlock Text="{Binding sTitle}" Foreground="#222222" TextAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </InlineUIContainer>
+                <Run Text="{Binding sDesc}" PreviewMouseLeftButtonDown="Text1_PreviewMouseLeftButtonDown" Cursor="Hand"/>
+                <Run Text="{Binding sDesc}"/>
+                <Run Text="{Binding sDesc}"/>
+            </TextBlock>
 
-        <!--<TextBlock Text="{Binding iCount, StringFormat=N0}" FontSize="16" Foreground="Wheat"/>
+        --><!--<TextBlock Text="{Binding iCount, StringFormat=N0}" FontSize="16" Foreground="Wheat"/>
 
         <Grid Visibility="{Binding bMouseHover, Converter={x:Static local:TestConverter.Instance}, ConverterParameter='w1,w2,w3'}">
 
@@ -114,7 +133,7 @@
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
             <Line X1="10" Y1="16" X2="16" Y2="10" Stroke="Black" StrokeThickness="1"/>
             <Line X1="16" Y1="10" X2="22" Y2="16" Stroke="Black" StrokeThickness="1"/>
-        </Grid>-->
+        </Grid>--><!--
 
         <Popup x:Name="TreasurePopup" IsOpen="False" Focusable="False" StaysOpen="False" AllowsTransparency="True" Placement="Top" 
                PlacementTarget="{Binding ElementName=GiftBtn}" HorizontalOffset="-330" VerticalOffset="-10">
@@ -158,6 +177,6 @@
             </Grid>
         </Popup>
 
-    </Grid>
+    </Grid>-->
 
 </Window>

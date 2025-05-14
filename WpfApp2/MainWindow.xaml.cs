@@ -205,7 +205,7 @@ namespace WpfApp2
         {
             try
             {
-                TreasurePopup.IsOpen = true;
+                //TreasurePopup.IsOpen = true;
             }
             catch /*(Exception exception)*/
             {
@@ -256,6 +256,11 @@ namespace WpfApp2
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             MainVm.Instance.TestProp();
+        }
+
+        private void Text1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

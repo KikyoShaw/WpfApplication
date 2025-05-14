@@ -25,6 +25,9 @@
     <Compile Update="UserControl3.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControl4.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -39,6 +42,9 @@
     <Page Update="NotificationWindow3.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UI\TvButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UserControl1.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -46,6 +52,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControl3.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControl4.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

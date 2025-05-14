@@ -43,6 +43,20 @@ using GalaSoft.MvvmLight;
             }
         }
 
+        private string _sTitle = "活动";
+        public string sTitle
+        {
+            get => _sTitle;
+            set => Set("sTitle", ref _sTitle, value);
+        }
+
+        private string _sDesc = "这是一段文字。如果太长会自动换行到第二行，但是如果第二行显示不全就显示";
+        public string sDesc
+        {
+            get => _sDesc;
+            set => Set("sDesc", ref _sDesc, value);
+        }
+
         public ObservableCollection<UIPropItem> vTenProps
         {
             get

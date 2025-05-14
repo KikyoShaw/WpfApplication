@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="WpfApp5.UserControl4"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp5"
+             xmlns:ui="clr-namespace:WpfApp5.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WpfApp5;Component/UI/TvButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+
+        <Grid VerticalAlignment="Top" Height="44" Width="343" Background="White">
+            <Grid Height="24" Margin="12 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="16" Width="16"/>
+                    <TextBlock Margin="4 0" Text="黑白弹幕" Foreground="#737981" VerticalAlignment="Center" FontWeight="Black"/>
+                    <TextBlock Text="组队0.01-10元" Foreground="#9499A0" VerticalAlignment="Center"/>
+                </StackPanel>
+                <Border Grid.Column="2" Height="24" CornerRadius="12" Background="#08000000" HorizontalAlignment="Center" MaxWidth="150">
+                    <StackPanel Orientation="Horizontal" Margin="12 4">
+                        <TextBlock Text="弹幕 : " FontSize="11" Foreground="#9499A0" VerticalAlignment="Center"/>
+                        <Image Height="14" Width="14" />
+                        <TextBlock Margin="4 0 0 0" Text="对方是谁冯绍峰对方是否" FontSize="11" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+        <!--<ui:TvButton Height="44" Width="343" TipsText="参与次数越多 越幸运" BtnText="继续参与" Style="{StaticResource TvButtonStyle}"/>-->
+
+        <Button Height="44" Width="343" Cursor="Hand">
+            <Button.Template>
+                <ControlTemplate>
+                   <Grid>
+                       <Border CornerRadius="22" >
+                           <Border.Background>
+                               <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                   <GradientStop Color="#FFE44D" Offset="0" />
+                                   <GradientStop Color="#FFD736" Offset="1" />
+                               </LinearGradientBrush>
+                           </Border.Background>
+                           <TextBlock Text="立即参与" Foreground="#18191C" FontWeight="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                       </Border>
+                        <Border Margin="0 -8 -8 0" VerticalAlignment="Top" Background="#FF3944" Height="16" HorizontalAlignment="Right" CornerRadius="8 8 8 1">
+                            <TextBlock Margin="4 1" Text="参与次数越多 越幸运" FontSize="10" FontWeight="Black" Foreground="#FFFFFF" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Triggers>
+                <!-- 放大缩小动画触发 -->
+                <EventTrigger RoutedEvent="Button.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="LayoutTransform.(ScaleTransform.ScaleX)"
+                                From="1.0" To="1.1" Duration="0:0:0.8" />
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="LayoutTransform.(ScaleTransform.ScaleY)"
+                                From="1.0" To="1.1" Duration="0:0:0.8" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
+            <!-- Transform用于实现缩放 -->
+            <Button.LayoutTransform>
+                <ScaleTransform ScaleX="1.0" ScaleY="1.0" />
+            </Button.LayoutTransform>
+        </Button>
+    </Grid>
+
+</UserControl>

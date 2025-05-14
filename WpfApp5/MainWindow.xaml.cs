@@ -1,11 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace WpfApp5
 {
+    public class MoreLiveItem
+    {
+        /// <summary>
+        /// 主播昵称
+        /// </summary>
+        public string AnchorNick { get; set; } = "";
+
+        /// <summary>
+        /// 显示tag标志 0-不显示，1-显示关注，2-显示粉丝徽章
+        /// </summary>
+        public int TagFlag { get; set; } = 0;
+
+        /// <summary>
+        /// 粉丝徽章亲密度 - 用于排序
+        /// </summary>
+        public int BadgeIntimacy { get; set; } = 0;
+    }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -18,6 +39,24 @@ namespace WpfApp5
         public MainWindow()
         {
             InitializeComponent();
+
+            List<MoreLiveItem> temp = new List<MoreLiveItem>
+            {
+                new MoreLiveItem { AnchorNick = "主播A", TagFlag = 0, BadgeIntimacy = 0 },
+                new MoreLiveItem { AnchorNick = "主播B", TagFlag = 0, BadgeIntimacy = 0 },
+                new MoreLiveItem { AnchorNick = "主播C", TagFlag = 1, BadgeIntimacy = 0 },
+                new MoreLiveItem { AnchorNick = "主播D", TagFlag = 0, BadgeIntimacy = 0 },
+                new MoreLiveItem { AnchorNick = "主播E", TagFlag = 0, BadgeIntimacy = 0 },
+            };
+
+            // 按优先粉丝牌（TagFlag=2）、亲密度（BadgeIntimacy），其次关注（TagFlag=1）排序。
+            var sortedList = temp
+                .OrderByDescending(item => item.TagFlag == 2) // 粉丝牌优先
+                .ThenByDescending(item => item.BadgeIntimacy) // 按亲密度排序
+                .ThenByDescending(item => item.TagFlag == 1) // 关注其次
+                .ThenBy(item => item.TagFlag)               // 剩余普通情况按 TagFlag
+                .ToList();
+
 
             string tt = @"C:\Users\shaw\AppData\Local\Temp\hytemp\cp\90-0-ee5d791f15c29c1336b096fefa7ff34f";
             string pp = System.IO.Path.GetDirectoryName(tt);
